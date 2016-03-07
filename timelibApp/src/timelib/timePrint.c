@@ -1,10 +1,10 @@
-#include <stdio.h>
-#include <string.h>
-#include "timesys.h"
-#include "timeLib.h"
-
+#include <epicsStdio.h>
+#include <epicsString.h>
 #include <registryFunction.h>
 #include <epicsExport.h>
+
+#include "timesys.h"
+#include "timeLib.h"
 
 /*+
  *   Function name:

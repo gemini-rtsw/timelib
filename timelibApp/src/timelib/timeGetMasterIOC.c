@@ -1,5 +1,5 @@
-#include <vxWorks.h>
-#include <drvTS.h>
+
+
 #include "timesys.h"
 
 /*+

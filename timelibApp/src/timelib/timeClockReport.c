@@ -1,11 +1,11 @@
-#include <vxWorks.h>
-#include <drvTS.h>
-#include <bc635.h>
-#include <stdio.h>
-#include "timesys.h"
 
+#include <epicsStdio.h>
 #include <registryFunction.h>
 #include <epicsExport.h>
+
+#include <bc635.h>
+#include "timesys.h"
+
 
 /*+
  *   Function name:
@@ -52,6 +52,7 @@ void timeClockReport( )
   int unsynched ;      /* TRUE if Bancomm is not synched */
   int tooLarge ;       /* TRUE if Time offset from Bancomm is too large */
   int freqOffsetErr ;  /* TRUE if freq. offset error from Bancomm */
+  int absent;
 
 /* check if Bancomm card is present */
 

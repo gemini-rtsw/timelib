@@ -7,7 +7,14 @@
 /*                                                             */
 /***************************************************************/
 
-#if defined (vxWorks)
+
+
+#include <epicsTime.h>
+#include "timesys.h"
+
+#if defined (vxWorks) || defined (__rtems__)
+
+#include <bc635.h>
 
 /*
 **  --------------
@@ -15,10 +22,7 @@
 **  --------------
 */
 
-#include <vxWorks.h>
-#include <bc635.h>
-#include <time.h>
-#include "timesys.h"
+
 
 /*+
  *   Function name:
@@ -111,9 +115,6 @@ int timeNow ( double *rawt )
 */
 
 #define  _POSIX_C_SOURCE 199309L
-#include <unistd.h>
-#include <time.h>
-#include "timesys.h"
 int timeNow ( double *rawt )
 /*
 **  - - - - - - - -

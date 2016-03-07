@@ -121,12 +121,12 @@ option -c ;                   /* allow start prior to all connections */
 /* put includes here */
 
 %%#include "timeLib.h"
-%%#include <string.h>
+%%#include <epicsString.h>
 
 /* Put defines here */
 
 %{
-#define NULL 0
+/* #define NULL 0 */
 #define BOOTING 0
 #define INITIALISING 1
 #define RUNNING 2

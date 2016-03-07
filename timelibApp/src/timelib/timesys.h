@@ -28,9 +28,7 @@
 *  (17 being the no. of leap years from 1900 to 1970) It is defined this
 *  way to prevent warnings over integer overflows
 */
-#if defined (vxWorks)
 #define TS_1900_TO_UNIX_EPOCH 2208988800UL 
-#endif
 
 /*
 **  ----
@@ -65,7 +63,7 @@
 /* Current LAST-GMST (radians) */
    extern double delstr;
 
-#if defined (vxWorks)
+#if defined (vxWorks) || defined (__rtems__)
 
 /* Longitude corrected for polar motion */
    extern double elongt;

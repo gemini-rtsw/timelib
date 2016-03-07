@@ -1,11 +1,11 @@
-#include <vxWorks.h>
-#include <drvTS.h>
-#include <bc635.h>
-#include <stdio.h>
-#include "timesys.h"
 
 #include <registryFunction.h>
 #include <epicsExport.h>
+#include <dbDefs.h>
+#include <bc635.h>
+#include <epicsStdio.h>
+#include "timesys.h"
+
 
 /*+
  *   Function name:

@@ -1,10 +1,8 @@
-#include <vxWorks.h>
-#include <drvTS.h>
-#include <stdio.h>
-#include "timesys.h"
-
+#include <epicsStdio.h>
 #include <registryFunction.h>
 #include <epicsExport.h>
+
+#include "timesys.h"
 
 /*+
  *   Function name:

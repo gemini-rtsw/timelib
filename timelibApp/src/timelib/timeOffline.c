@@ -35,7 +35,10 @@
 /*                                                             */
 /***************************************************************/
 
-#if defined (vxWorks)
+#include <slalib.h>
+#include "timesys.h"
+
+#if defined (vxWorks) || defined (__rtems__)
 
 /*
 **  --------------
@@ -43,10 +46,6 @@
 **  --------------
 */
 
-#include <slalib.h>
-#define extern
-#include "timesys.h"
-#undef extern
 int timeOffline ( double tai,
                   double elong, double phi, double hm,
                   double dleap, double dat, double dut )
@@ -95,10 +94,6 @@ int timeOffline ( double tai,
 **  ---------------
 */
 
-#include <slalib.h>
-#define extern
-#include "timesys.h"
-#undef extern
 int timeOffline ( double tai,
                   double elong, double phi, double hm,
                   double dleap, double dat, double dut )

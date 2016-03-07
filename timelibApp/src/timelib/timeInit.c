@@ -7,7 +7,13 @@
 /*                                                             */
 /***************************************************************/
 
-#if defined (vxWorks)
+
+#include <dbDefs.h>
+#include <slalib.h>
+#include <epicsTime.h>
+#include "timesys.h"
+
+#if defined (vxWorks) || defined (__rtems__)
 
 /*
 **  --------------
@@ -15,15 +21,16 @@
 **  --------------
 */
 
-#include <vxWorks.h>
-#include <drvTS.h>
-#include <bc635.h>
-#include <slalib.h>
-#include <stdio.h>
 
-#define extern
+#include <bc635.h>
+#include <epicsStdio.h>
+
+#if 0
+#define extern    /* this, I think, is too clever by half. FIX! -mdw 2016-03-07  */
 #include "timesys.h"
 #undef extern
+#endif
+
 
 /* Add forward declaration of TSgetUnixTime. This is declared in drvTS.c 
  * not drvTS.h and so can't be included here
@@ -221,10 +228,6 @@ int timeInit ( )
 **  ---------------
 */
 
-#include <slalib.h>
-#define extern
-#include "timesys.h"
-#undef extern
 int timeInit ( )
 /*
 **  - - - - - - - - -

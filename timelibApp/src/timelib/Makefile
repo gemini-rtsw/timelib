@@ -3,37 +3,35 @@ TOP = ../../..
 include $(TOP)/configure/CONFIG
 
 # Build the time library
+LIBRARY = timelib
 
-LIBRARY_Linux += timelib
 
-LIB_LIBS += slalib
+
+timelib_LIBS_Linux += slalib
+timelib_LIBS_DEFAULT += bancomm slalib seq pv
 
 # For the build of the libraries
-LIB_SRCS_Linux += timeInit.c
-LIB_SRCS_Linux += timeNow.c
-LIB_SRCS_Linux += timeNowC.c
-LIB_SRCS_Linux += timeNowD.c
-LIB_SRCS_Linux += timeNowR.c
-LIB_SRCS_Linux += timeNowT.c
-LIB_SRCS_Linux += timeOffline.c
-LIB_SRCS_Linux += timeOffset.c
-LIB_SRCS_Linux += timeTai2raw.c
-LIB_SRCS_Linux += timeThenC.c
-LIB_SRCS_Linux += timeThenD.c
-LIB_SRCS_Linux += timeThenR.c
-LIB_SRCS_Linux += timeThenT.c
-LIB_SRCS_Linux += timeRaw2tai.c
-LIB_SRCS_Linux += timePrint.c
+timelib_SRCS_Linux += timeInit.c
+timelib_SRCS_Linux += timeNow.c
+timelib_SRCS_Linux += timeNowC.c
+timelib_SRCS_Linux += timeNowD.c
+timelib_SRCS_Linux += timeNowR.c
+timelib_SRCS_Linux += timeNowT.c
+timelib_SRCS_Linux += timeOffline.c
+timelib_SRCS_Linux += timeOffset.c
+timelib_SRCS_Linux += timeTai2raw.c
+timelib_SRCS_Linux += timeThenC.c
+timelib_SRCS_Linux += timeThenD.c
+timelib_SRCS_Linux += timeThenR.c
+timelib_SRCS_Linux += timeThenT.c
+timelib_SRCS_Linux += timeRaw2tai.c
+timelib_SRCS_Linux += timePrint.c
+timelib_SRCS_Linux += timesys.c
 
-LIBRARY_RTEMS += timelib
+SRCS.c  = $(wildcard ../*.c)
+timelib_SRCS_DEFAULT += $(strip $(patsubst ../%.c, %.o, $(SRCS.c)))
+timelib_SRCS_DEFAULT += timeSeq.st
 
-LIB_SRCS_RTEMS += timeOffline.c
-LIB_SRCS_RTEMS += timeNow.c
-LIB_SRCS_RTEMS += timeThenT.c
-LIB_SRCS_RTEMS += timeThenD.c
-LIB_SRCS_RTEMS += timeThenR.c
-LIB_SRCS_RTEMS += timeRaw2tai.c
-LIB_SRCS_RTEMS += timeInit.c
 
 INC += timeLib.h
 INC += timesys.h
