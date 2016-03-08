@@ -116,6 +116,7 @@ int timeInit ( )
 */
 {
 
+   int j;
    double tdb;
    struct timespec tspec;
    int simulate;               /* TRUE if time is to be simulated */
