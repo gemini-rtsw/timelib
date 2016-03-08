@@ -25,19 +25,10 @@
 #include <bc635.h>
 #include <epicsStdio.h>
 
-#if 0
-#define extern    /* this, I think, is too clever by half. FIX! -mdw 2016-03-07  */
-#include "timesys.h"
-#undef extern
-#endif
-
 
 /* Add forward declaration of TSgetUnixTime. This is declared in drvTS.c 
  * not drvTS.h and so can't be included here
 */
-
-long TSgetUnixTime (struct timespec* ts) ;
-
 /*+
  *   Function name:
  *   timeInit
@@ -126,13 +117,14 @@ int timeInit ( )
 {
 
    double tdb;
-   int j;
    struct timespec tspec;
    int simulate;               /* TRUE if time is to be simulated */
    int master;                 /* TRUE if this is the timing master */
    time_t gpstime;             /* GPS time */
    struct tm *gtime;           /* GPS time */
    char rtctime[14];           /* String to send to RTC */
+   epicsTimeStamp now;
+   
 
 /* First check that parameters given with timeClockInit are consistent
  * with the hardware that is present. This repeats the tests of 
@@ -160,8 +152,12 @@ int timeInit ( )
  * if running in simulate mode. This is equivalent to interpreting 
  * "simulate" to mean "standalone"
  */
+    if (epicsTimeGetCurrent(&now) != 0)
+        return -1;
 
-   j = TSgetUnixTime( &tspec );
+    if (epicsTimeToTimespec(&tspec, &now) != 0)
+        return -1;
+
    if (simulate && j) return j;
    tspec.tv_sec = tspec.tv_sec - TS_1900_TO_UNIX_EPOCH;
    j = clock_settime ( CLOCK_REALTIME, &tspec );

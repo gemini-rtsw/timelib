@@ -32,6 +32,8 @@ SRCS.c  = $(wildcard ../*.c)
 timelib_SRCS_DEFAULT += $(strip $(patsubst ../%.c, %.o, $(SRCS.c)))
 timelib_SRCS_DEFAULT += timeSeq.st
 
+LIB_SRCS_RTEMS += timeCheck.c
+
 
 INC += timeLib.h
 INC += timesys.h

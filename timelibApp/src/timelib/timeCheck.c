@@ -55,6 +55,9 @@ int timeCheck (double *BCmNTP)
   double taiNTP ;              /* TAI derived from NTP */
   struct timespec tspec ;
   int simulate ;               /* Flag if time is being simulated */
+  epicsTimeStamp now;
+  unsigned long pNSecs;
+
 
   readstat = 0 ;
   *BCmNTP  = 0.0 ;
@@ -69,15 +72,16 @@ int timeCheck (double *BCmNTP)
 /* If it is not possible to read a time from the NTP server then simply
  * return the error codes from the bc635_read
  */
-    if (TSgetUnixTime(&tspec))
-      return readstat ;
-    else
-    {
+    if (epicsTimeGetCurrent(&now) != 0)
+        return -1;
+
+    if (epicsTimeToTimespec(&tspec, &now) != 0)
+        return -1;
+
       taiNTP = tspec.tv_sec + (double)tspec.tv_nsec/1000000000.0 
                             + datlsd * 86400.0 
                             - TS_1900_TO_UNIX_EPOCH ;
       *BCmNTP = taiBC - taiNTP ;
-    }
    }
   }
   return readstat ;
