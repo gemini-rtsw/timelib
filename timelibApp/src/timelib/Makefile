@@ -31,7 +31,7 @@ timelib_SRCS_DEFAULT += $(strip $(patsubst ../%.c, %.o, $(SRCS.c)))
 
 timeSeq_SNCFLAGS += +r +d
 timelib_DBD += timeSeq.dbd
-timelib_SRCS += timeSeq.stt
+timelib_SRCS += timeSeq.st
 timeSeq_LIBS += seq pv
 
 INC += timeLib.h
