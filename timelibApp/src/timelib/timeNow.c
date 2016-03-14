@@ -92,6 +92,9 @@ int timeNow ( double *rawt )
 
    if (tsim && absent)
    {
+
+	printf("tsim=%d,absent=%d\n", tsim, absent);
+
       if ( (j = clock_gettime(CLOCK_REALTIME, &tspec )) ) return j;
       *rawt = tspec.tv_sec + (double)tspec.tv_nsec / 1000000000.0;
       if ( !initd ) if ( (j = timeInit()) ) return j;
@@ -99,6 +102,8 @@ int timeNow ( double *rawt )
    }
    else
    {
+	printf("tsim=%d,absent=%d\n", tsim, absent);
+
 /* Why zero all error bits here ? */
       if ( (j = bc635_read ( rawt )) & (~0x07) ) return j;
    }

@@ -1,6 +1,9 @@
 #include <bc635.h>
-#include <registryFunction.h>
+/*
+ * #include <registryFunction.h>
+ */
 #include <epicsExport.h>
+#include <iocsh.h>
 
 #include "timesys.h"
 
@@ -72,7 +75,7 @@ int timeClockInit ( int master, int simulate, int intPerSecond,
 **  Copyright 1996 RAL.  All rights reserved.
 */
 {
-   int j;
+   int status;
    int tickint;
 
 /* Save the simulate flag  and master flags in the time library global memory */
@@ -99,11 +102,36 @@ int timeClockInit ( int master, int simulate, int intPerSecond,
 
       tickint = intPerTick;
       if (tickint < 2) tickint = 1;
-      j = sysClkRateSet(intPerSecond/tickint);
-      return j;
+      status = clock_rate_set(intPerSecond/tickint);
+      return status;
    }
 }
 
 /* Register these symbols for use by IOC code */
+/* Information needed by iocsh */
+static const iocshArg     timeClockInitArg0 = {"master", iocshArgInt};
+static const iocshArg     timeClockInitArg1 = {"simulate", iocshArgInt};
+static const iocshArg     timeClockInitArg2 = {"intPerSecond", iocshArgInt};
+static const iocshArg     timeClockInitArg3 = {"intPerTick", iocshArgInt};
+static const iocshArg     timeClockInitArg4 = {"timeOffset", iocshArgInt};
 
-epicsRegisterFunction( timeClockInit );
+static const iocshArg    *timeClockInitArgs[] = {
+	&timeClockInitArg0, &timeClockInitArg1, &timeClockInitArg2, &timeClockInitArg3, &timeClockInitArg4
+};
+
+static const iocshFuncDef timeClockInitFuncDef = {"timeClockInit", 5, timeClockInitArgs};
+
+/* Wrapper called by iocsh, selects the argument types that timeClockInit needs */
+static void timeClockInitCallFunc(const iocshArgBuf *args) {
+    timeClockInit(args[0].ival, args[1].ival, args[2].ival, args[3].ival, args[4].ival);
+}
+
+/* Registration routine, runs at startup */
+static void timeClockInitRegister(void) {
+    iocshRegister(&timeClockInitFuncDef, timeClockInitCallFunc);
+}
+epicsExportRegistrar(timeClockInitRegister);
+
+/* 
+ * epicsRegisterFunction( timeClockInit );
+ */

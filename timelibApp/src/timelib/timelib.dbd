@@ -1,6 +1,6 @@
-function( timeClockInit )
+registrar( timeClockInitRegister )
+registrar( timePrintRegister )
 registrar( timeSeqRegistrar )
-function( timePrint )
 function ( timeClockCheck )
 function ( timeClockReport )
 function ( timeDump )

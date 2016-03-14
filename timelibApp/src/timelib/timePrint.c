@@ -1,7 +1,10 @@
 #include <epicsStdio.h>
 #include <epicsString.h>
+/*
 #include <registryFunction.h>
+*/
 #include <epicsExport.h>
+#include <iocsh.h>
 
 #include "timesys.h"
 #include "timeLib.h"
@@ -76,5 +79,29 @@ int timePrint ( char *scale )
 }
 
 /* Register these symbols for use by IOC code */
+/* Register these symbols for use by IOC code */
+/* Information needed by iocsh */
+static const iocshArg     timePrintArg0 = {"scale", iocshArgString};
 
-epicsRegisterFunction( timePrint );
+static const iocshArg    *timePrintArgs[] = {
+	&timePrintArg0
+};
+
+static const iocshFuncDef timePrintFuncDef = {"timePrint", 1, timePrintArgs};
+
+/* Wrapper called by iocsh, selects the argument types that timePrint needs */
+static void timePrintCallFunc(const iocshArgBuf *args) {
+    timePrint(args[0].sval);
+}
+
+/* Registration routine, runs at startup */
+static void timePrintRegister(void) {
+    iocshRegister(&timePrintFuncDef, timePrintCallFunc);
+}
+epicsExportRegistrar(timePrintRegister);
+
+
+
+
+
+/* epicsRegisterFunction( timePrint ); */
