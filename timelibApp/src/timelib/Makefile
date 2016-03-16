@@ -23,6 +23,7 @@ timelib_SRCS_Linux += timeThenT.c
 timelib_SRCS_Linux += timeRaw2tai.c
 timelib_SRCS_Linux += timePrint.c
 timelib_SRCS_Linux += timesys.c
+#timelib_SRCS_Linux += timeCheck.c
 
 LIB_LIBS += slalib $(EPICS_BASE_IOC_LIBS)
 
@@ -31,7 +32,7 @@ timelib_SRCS_DEFAULT += $(strip $(patsubst ../%.c, %.o, $(SRCS.c)))
 
 timeSeq_SNCFLAGS += +r +d
 timelib_DBD += timeSeq.dbd
-timelib_SRCS += timeSeq.st
+timelib_SRCS_DEFAULT += timeSeq.st
 timeSeq_LIBS += seq pv
 
 INC += timeLib.h
