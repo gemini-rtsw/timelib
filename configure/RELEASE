@@ -20,12 +20,12 @@
 # CONFIG_SITE file.
 
 TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
-SLALIB=/gem_sw/prod/R3.14.12.4/support/slalib/1-9-3
+SLALIB=/gem_sw/prod/R3.14.12.4/support/slalib/1-9-4
 
-BANCOMM=/gem_sw/prod/R3.14.12.4/support/bancomm/1-4
+BANCOMM=/gem_sw/prod/R3.14.12.4/support/bancomm/1-5-2
 
 # If using the sequencer, point SNCSEQ at its top directory:
-SNCSEQ=/gem_sw/prod/R3.14.12.4/support/seq/2-2-3
+SNCSEQ=/gem_sw/prod/R3.14.12.4/support/seq/2-2-3-1
 
 # EPICS_BASE usually appears last so other apps can override stuff:
 EPICS_BASE=/gem_sw/epics/R3.14.12.4/base
