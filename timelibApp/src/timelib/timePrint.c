@@ -5,6 +5,7 @@
 */
 #include <epicsExport.h>
 #include <iocsh.h>
+#include <string.h>
 
 #include "timesys.h"
 #include "timeLib.h"

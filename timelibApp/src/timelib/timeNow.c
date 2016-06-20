@@ -11,6 +11,7 @@
 
 #include <epicsTime.h>
 #include "timesys.h"
+#include "stdio.h"
 
 #if defined (vxWorks) || defined (__rtems__)
 
@@ -119,7 +120,6 @@ int timeNow ( double *rawt )
 **  ---------------
 */
 
-#define  _POSIX_C_SOURCE 199309L
 int timeNow ( double *rawt )
 /*
 **  - - - - - - - -
