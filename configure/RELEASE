@@ -21,7 +21,7 @@
 
 TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 SLALIB=/gem_sw/prod/R3.14.12.4/support/slalib/1-9-5
-BANCOMM=/gem_sw/prod/R3.14.12.4/support/bancomm/1-5-2
+BANCOMM=/gem_sw/prod/R3.14.12.4/support/bancomm/1-6-3
 
 # If using the sequencer, point SNCSEQ at its top directory:
 SNCSEQ=/gem_sw/prod/R3.14.12.4/support/seq/2-2-3-1
