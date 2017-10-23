@@ -88,7 +88,7 @@ void timeDump( void );
 void timeSetDefaults ( double tlongm, double tlatm, double xpmr, double ypmr,
                        double ttmtai, double mjdls, double delat,
                        double delut, double deltdb, double bias );
-int  timeCheck( double *timeDiff );
+int  timeCheck( double *timeDiff, int tcDebug);
 void timeLibRefresh (double deltdb);
 #endif
 
