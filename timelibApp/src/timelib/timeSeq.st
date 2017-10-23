@@ -178,7 +178,7 @@ sync tcsDelut  changedConfig ;
 
 /* Local variables */
 
-float loopTime ;              /* Interval between monitors */
+double loopTime ;              /* Interval between monitors */
 int readstat ;                /* status from checking time */
 int prevstat ;                /* status from previous check */
 double BCmNTP ;               /* Bancomm - NTP (secs) */
