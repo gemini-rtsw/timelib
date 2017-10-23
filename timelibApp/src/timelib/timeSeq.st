@@ -162,6 +162,7 @@ string timeHealth ;    assign timeHealth to "{sys}TIME:health" ;
 string timeMess ;  assign timeMess to "{sys}TIME:health.IMSS" ;
 string tcsLog ;    assign tcsLog to "{sys}logrecord" ;
 int timeSimFlag ;  assign timeSimFlag to "{sys}TIME:intSimulate" ;      
+int timeDebugFlag ;  assign timeDebugFlag to "{sys}TIME:debug" ;      
 
 
 evflag changedBias ;         /* Event flag to detect changes in time offset */
@@ -285,8 +286,8 @@ ss timeMon
   }
 
   state waitConnect
-  {
-   when (pvConnectCount() == pvChannelCount())
+   {
+    when (pvConnectCount() == pvChannelCount())
    {
    } state checkState
 
@@ -295,7 +296,9 @@ ss timeMon
 /* This code periodically reads the time from the Bancomm, and sets the 
  * time system health on the basis of the error returned
  */
-    readstat = timeCheck(&BCmNTP) & 0x05; /* ignore offset >5 us */
+
+    pvGet(timeDebugFlag);
+    readstat = timeCheck(&BCmNTP, timeDebugFlag) & 0x05; /* ignore offset >5 us */
     if ((BCmNTP > 2.0 || BCmNTP < -2.0) && readstat)
     {
        if (strcmp(timeHealth,"BAD") || prevstat != readstat)
@@ -362,10 +365,12 @@ ss timeMon
       when (delay(loopTime))
       {
 
+          pvGet(timeDebugFlag);
+
           /* This code periodically reads the time from the Bancomm, and sets the 
            * time system health on the basis of the error returned
            */
-          readstat = timeCheck(&BCmNTP) & 0x05; /* ignore offset >5 us */
+          readstat = timeCheck(&BCmNTP, timeDebugFlag) & 0x05; /* ignore offset >5 us */
           if ((BCmNTP > 2.0 || BCmNTP < -2.0) && readstat)
           {
               if (strcmp(timeHealth,"BAD") || prevstat != readstat)
