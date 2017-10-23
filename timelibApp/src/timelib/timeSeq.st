@@ -338,79 +338,99 @@ ss timeMon
    } state waitConnect
   }
 
+  /* 2017 Update for EPICS versions greater than 3.14.7 which employ GeneralTime calculations.
+   * Earlier EPICS versions relied on drvTS.c which use TSgetUnixTime. 
+   * This time health monitoring now uses GeneralTime library calls such as epicsTimeGetCurrent().
+   * The accounting for leap seconds is included already.
+   *
+   * Refactor authors: P. Gigoux, T. Gaggstatter, R. Cardenes , M. Rippa., I. Arriagada
+   *
+   * See:
+   * http://swg.wikis-internal.gemini.edu/index.php/Timelib_errors
+   *
+   *
+   * Notes: timeCheck returns BCmNTP which is the differnce between BancommTime and NTP time. The
+   *        idea is that if the Bancomm board has any of the register errors defined, then and only
+   *        then will the difference between BC and NTP be tested.
+   *
+   *        Further, if any board register is bad on one call, then subsequently returns okay, the
+   *        timeHealth will be set back to GOOD.
+   *        
+   */
   state monitoring
   {
-   when (delay(loopTime))
-   {
-/* This code periodically reads the time from the Bancomm, and sets the 
- * time system health on the basis of the error returned
- */
-    readstat = timeCheck(&BCmNTP) & 0x05; /* ignore offset >5 us */
-    if ((BCmNTP > 2.0 || BCmNTP < -2.0) && readstat)
-    {
-       if (strcmp(timeHealth,"BAD") || prevstat != readstat)
-       {
-           strcpy(timeMess, "Bancomm time out by > 2s");
-           strcpy(timeHealth, "BAD") ;
-           prevstat = readstat ;
-           pvPut(timeMess) ;
-           pvPut(timeHealth) ;
-           sprintf(tcsLog, "Time: Health bad, status = %d", readstat) ;
-           pvPut(tcsLog) ;
-       }
-    }
-    else if ((BCmNTP < 2.0 && BCmNTP > -2.0) && readstat)
-    {
-       if (strcmp(timeHealth,"WARNING") || prevstat != readstat)
-       {
-           sprintf(timeMess, "Bancomm status %d", readstat) ;
-           strcpy(timeHealth, "WARNING") ;
-           prevstat = readstat ;
-           pvPut(timeMess) ;
-           pvPut(timeHealth) ;
-           sprintf(tcsLog, "Time: Health warning, status = %d", readstat) ;
-           pvPut(tcsLog) ;
-       }
-    }
-    else
-    {
-       if (strcmp(timeHealth,"GOOD") || prevstat != readstat)
-       {
-           strcpy(timeMess," ");
-           strcpy(timeHealth, "GOOD") ;
-           prevstat = readstat ;
-           pvPut(timeMess) ;
-           pvPut(timeHealth) ;
-           sprintf (tcsLog, "Time: Health good") ;
-           pvPut(tcsLog) ;
-       }
-    }
+      when (delay(loopTime))
+      {
 
-   } state monitoring
+          /* This code periodically reads the time from the Bancomm, and sets the 
+           * time system health on the basis of the error returned
+           */
+          readstat = timeCheck(&BCmNTP) & 0x05; /* ignore offset >5 us */
+          if ((BCmNTP > 2.0 || BCmNTP < -2.0) && readstat)
+          {
+              if (strcmp(timeHealth,"BAD") || prevstat != readstat)
+              {
+                  strcpy(timeMess, "Bancomm time out by > 2s");
+                  strcpy(timeHealth, "BAD") ;
+                  prevstat = readstat ;
+                  pvPut(timeMess) ;
+                  pvPut(timeHealth) ;
+                  sprintf(tcsLog, "Time: Health bad, status = %d", readstat) ;
+                  pvPut(tcsLog) ;
+              }
+          }
+          else if ((BCmNTP < 2.0 && BCmNTP > -2.0) && readstat)
+          {
+              if (strcmp(timeHealth,"WARNING") || prevstat != readstat)
+              {
+                  sprintf(timeMess, "Bancomm status %d", readstat) ;
+                  strcpy(timeHealth, "WARNING") ;
+                  prevstat = readstat ;
+                  pvPut(timeMess) ;
+                  pvPut(timeHealth) ;
+                  sprintf(tcsLog, "Time: Health warning, status = %d", readstat) ;
+                  pvPut(tcsLog) ;
+              }
+          }
+          else
+          {
+              if (strcmp(timeHealth,"GOOD") || prevstat != readstat)
+              {
+                  strcpy(timeMess," ");
+                  strcpy(timeHealth, "GOOD") ;
+                  prevstat = readstat ;
+                  pvPut(timeMess) ;
+                  pvPut(timeHealth) ;
+                  sprintf (tcsLog, "Time: Health good") ;
+                  pvPut(tcsLog) ;
+              }
+          }
 
-   when (pvConnectCount() < pvChannelCount())
-   {
-    tcsState = BOOTING ;
-   }  state waitConnect
+      } state monitoring
 
-   when (efTestAndClear(changedBias))
-   {
-    timeOffset(tcsBias) ;
-   } state monitoring
+      when (pvConnectCount() < pvChannelCount())
+      {
+          tcsState = BOOTING ;
+      }  state waitConnect
 
-   when (efTestAndClear(changedTdb))
-   {
-    timeLibRefresh(tcsDeltdb) ;
-   } state monitoring
+      when (efTestAndClear(changedBias))
+      {
+          timeOffset(tcsBias) ;
+      } state monitoring
 
-   when (efTestAndClear(changedConfig))
-   {
-    pvGet(tcsTlong) ;
-    pvGet(tcsTlat) ;
-    pvGet(tcsTtmtai);
-    timeSetDefaults(tcsTlong, tcsTlat, tcsXpm, tcsYpm, tcsTtmtai,
-                    tcsDjmls, tcsDelat, tcsDelut, tcsDeltdb, tcsBias) ;
-   } state monitoring
+      when (efTestAndClear(changedTdb))
+      {
+          timeLibRefresh(tcsDeltdb) ;
+      } state monitoring
+
+      when (efTestAndClear(changedConfig))
+      {
+          pvGet(tcsTlong) ;
+          pvGet(tcsTlat) ;
+          pvGet(tcsTtmtai);
+          timeSetDefaults(tcsTlong, tcsTlat, tcsXpm, tcsYpm, tcsTtmtai,
+                  tcsDjmls, tcsDelat, tcsDelut, tcsDeltdb, tcsBias) ;
+      } state monitoring
 
   }
 
