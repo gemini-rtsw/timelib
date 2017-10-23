@@ -2,7 +2,7 @@
 #include <epicsTime.h>
 #include <bc635.h>
 #include "timesys.h"
-
+#include "stdio.h"
 /*+
  *   Function name:
  *   timeCheck
@@ -40,48 +40,50 @@
  *-
  */
 
-int timeCheck (double *BCmNTP)
+int timeCheck (double *BCmNTP, int tcDebug)
 {
-  int readstat ;               /* status return from bc635_read */
-  double taiBC ;               /* TAI returned by Bancomm */
-  double taiNTP ;              /* TAI derived from NTP */
-  struct timespec tspec ;
-  int simulate ;               /* Flag if time is being simulated */
-  epicsTimeStamp now;
-  unsigned long pNSecs;
+    int readstat ;               /* status return from bc635_read */
+    double taiBC ;               /* TAI returned by Bancomm */
+    double taiNTP ;              /* TAI derived from NTP */
+    struct timespec tspec ;
+    int simulate ;               /* Flag if time is being simulated */
+    epicsTimeStamp now;
+    char cbuf[80];
 
+    readstat = 0 ;
+    *BCmNTP  = 0.0 ;
 
-  readstat = 0 ;
-  *BCmNTP  = 0.0 ;
+    timeGetSimFlag(&simulate) ;
 
-  timeGetSimFlag(&simulate) ;
+    if (!simulate)
+    {
+        readstat = bc635_read(&taiBC) & 0x07 ;
 
-  if (!simulate)
-  {
-   readstat = bc635_read(&taiBC) & 0x07 ;
-   if (readstat)
-   {
-/* If it is not possible to read a time from the NTP server then simply
- * return the error codes from the bc635_read
- */
-    if (epicsTimeGetCurrent(&now) != 0)
-        return -1;
+        if (readstat)
+        {
 
-    if (epicsTimeToTimespec(&tspec, &now) != 0)
-        return -1;
+            /* If it is not possible to read a time from the NTP server then simply
+             * return the error codes from the bc635_read
+             */
+            if (epicsTimeGetCurrent(&now) != 0) {
+                printf("timeCheck: call to epicsTimeGetCurrent() failed\n");
+                return -1;
+            }
 
-    /* Commented out the lines that convert from UNIX time.
-     * The legacy code was using TSgetUnixTime; the new code
-     * calls epicsTimeGetCurrent. Substracting the leap seconds
-     * is not needed either.
-      taiNTP = tspec.tv_sec + (double)tspec.tv_nsec/1000000000.0 
-                            + datlsd * 86400.0 
-                            - TS_1900_TO_UNIX_EPOCH ;
-     */
-      taiNTP = tspec.tv_sec + (double)tspec.tv_nsec/1000000000.0;
-      *BCmNTP = taiBC - taiNTP ;
-      /* printf("Bancomm Time: %f , NTP Time %f , difference: %f, NTP Time human: %s \n", taiBC, taiNTP, *BCmNTP, now ); */
-   }
-  }
-  return readstat ;
+            if (epicsTimeToTimespec(&tspec, &now) != 0) {
+                printf("timeCheck: failed to convert to timespec\n");
+                return -1;
+            }
+
+            taiNTP = tspec.tv_sec + (double)tspec.tv_nsec/1000000000.0;
+            *BCmNTP = taiBC - taiNTP ;
+
+            if (tcDebug) {
+                epicsTimeToStrftime(cbuf, sizeof cbuf, "%F_%T", &now);
+                printf("Bancomm Time: %f , NTP Time %f ,difference: %f, NTP Time human: %s \n", taiBC, taiNTP, *BCmNTP, cbuf ); 
+            }
+        }
+
+    }
+    return readstat ;
 } 
