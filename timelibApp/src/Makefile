@@ -3,6 +3,6 @@ TOP = ../..
 include $(TOP)/configure/CONFIG
 
 DIRS += timelib
-DIRS += timeProbe
+#DIRS += timeProbe
 
 include $(TOP)/configure/RULES_DIRS
