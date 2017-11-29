@@ -1,6 +1,0 @@
-registrar( timeClockInitRegister )
-registrar( timePrintRegister )
-registrar( timeSeqRegistrar )
-function ( timeClockCheck )
-function ( timeClockReport )
-function ( timeDump )

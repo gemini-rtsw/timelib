@@ -1,6 +1,6 @@
-# provide definitions such as
-#include "xxxRecord.dbd"
-#device(xxx,CONSTANT,devXxxSoft,"SoftChannel")
-#driver(myDriver)
-#registrar(myRegistrar)
-#variable(myVariable)
+registrar( timeClockInitRegister )
+registrar( timePrintRegister )
+registrar( timeSeqRegistrar )
+function ( timeClockCheck )
+function ( timeClockReport )
+function ( timeDump )
