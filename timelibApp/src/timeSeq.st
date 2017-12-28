@@ -295,7 +295,7 @@ ss timeMon
 /* This code periodically reads the time from the Bancomm, and sets the 
  * time system health on the basis of the error returned
  */
-    readstat = timeCheck(&BCmNTP) ;
+    readstat = timeCheck(&BCmNTP) & 0x05; /* ignore offset >5 us */
     if ((BCmNTP > 2.0 || BCmNTP < -2.0) && readstat)
     {
        if (strcmp(timeHealth,"BAD") || prevstat != readstat)
@@ -345,7 +345,7 @@ ss timeMon
 /* This code periodically reads the time from the Bancomm, and sets the 
  * time system health on the basis of the error returned
  */
-    readstat = timeCheck(&BCmNTP) ;
+    readstat = timeCheck(&BCmNTP) & 0x05; /* ignore offset >5 us */
     if ((BCmNTP > 2.0 || BCmNTP < -2.0) && readstat)
     {
        if (strcmp(timeHealth,"BAD") || prevstat != readstat)
