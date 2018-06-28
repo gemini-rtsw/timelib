@@ -90,7 +90,6 @@ int timeNow ( double *rawt )
 {
    int j;
    struct timespec tspec;
-   static int tcount = 0;
 
    if (tsim && absent)
    {

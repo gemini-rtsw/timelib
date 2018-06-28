@@ -159,7 +159,6 @@ int timeInit ( )
     if (epicsTimeToTimespec(&tspec, &now) != 0)
         return -1;
 
-   if (simulate && j) return j;
    tspec.tv_sec = tspec.tv_sec - TS_1900_TO_UNIX_EPOCH;
    j = clock_settime ( CLOCK_REALTIME, &tspec );
    if (simulate && j) return j;

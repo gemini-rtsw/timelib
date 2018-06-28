@@ -48,7 +48,6 @@ int timeCheck (double *BCmNTP)
   struct timespec tspec ;
   int simulate ;               /* Flag if time is being simulated */
   epicsTimeStamp now;
-  unsigned long pNSecs;
 
 
   readstat = 0 ;
