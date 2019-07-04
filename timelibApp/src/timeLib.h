@@ -75,6 +75,7 @@ int timeThenT ( double, timescale, int, int* );
 int timeOffline ( double, double, double, double, double, double, double );
 int timePrint( char* );
 
+#if 0
 #if defined (vxWorks) || defined (__rtems__)
 void timeClockCheck ( void );
 int timeClockInit (int master, int simulate, int intPerSecond,
@@ -91,5 +92,7 @@ void timeSetDefaults ( double tlongm, double tlatm, double xpmr, double ypmr,
 int  timeCheck( double *timeDiff );
 void timeLibRefresh (double deltdb);
 #endif
+#endif
+
 
 #endif

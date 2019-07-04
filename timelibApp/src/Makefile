@@ -7,7 +7,7 @@ include $(TOP)/configure/CONFIG
 LIBRARY += timelib
 
 # For the build of the libraries
-timelib_SRCS_Linux += timeInit.c
+#timelib_SRCS_Linux += timeInit.c
 timelib_SRCS_Linux += timeNow.c
 timelib_SRCS_Linux += timeNowC.c
 timelib_SRCS_Linux += timeNowD.c
