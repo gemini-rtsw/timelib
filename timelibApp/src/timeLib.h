@@ -75,24 +75,5 @@ int timeThenT ( double, timescale, int, int* );
 int timeOffline ( double, double, double, double, double, double, double );
 int timePrint( char* );
 
-#if 0
-#if defined (vxWorks) || defined (__rtems__)
-void timeClockCheck ( void );
-int timeClockInit (int master, int simulate, int intPerSecond,
-                   int intPerTick, int timeOffset );
-void timeClockReport ( void );
-void timeSetSimFlag ( int simulate );
-void timeGetSimFlag ( int *simulate );
-void timeSetMasterIOC ( int master );
-void timeGetMasterIOC ( int *master );
-void timeDump( void );
-void timeSetDefaults ( double tlongm, double tlatm, double xpmr, double ypmr,
-                       double ttmtai, double mjdls, double delat,
-                       double delut, double deltdb, double bias );
-int  timeCheck( double *timeDiff );
-void timeLibRefresh (double deltdb);
-#endif
-#endif
-
 
 #endif

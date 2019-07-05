@@ -7,7 +7,6 @@ include $(TOP)/configure/CONFIG
 LIBRARY += timelib
 
 # For the build of the libraries
-#timelib_SRCS_Linux += timeInit.c
 timelib_SRCS_Linux += timeNow.c
 timelib_SRCS_Linux += timeNowC.c
 timelib_SRCS_Linux += timeNowD.c
@@ -23,7 +22,6 @@ timelib_SRCS_Linux += timeThenT.c
 timelib_SRCS_Linux += timeRaw2tai.c
 timelib_SRCS_Linux += timePrint.c
 timelib_SRCS_Linux += timesys.c
-#timelib_SRCS_Linux += timeCheck.c
 
 LIB_LIBS += slalib $(EPICS_BASE_IOC_LIBS)
 

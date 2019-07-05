@@ -71,21 +71,8 @@
 /* Current LAST-GMST (radians) */
    extern double delstr;
 
-#if defined (vxWorks) || defined (__rtems__)
 
-/* Longitude corrected for polar motion */
-   extern double elongt;
 
-/* Time simulation flag */
-   extern int tsim;
-
-/* Flag to show if system running this code is time bus master */
-   extern int masterIOC;
-
-/* Flag to show if hardware is present or not */
-   extern int absent;
-
-#endif
 
 /*
 ** ------------
