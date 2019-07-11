@@ -59,7 +59,7 @@
                   LAST      /* Local Apparent Sidereal Time */
                 } timescale;
 
-int timeInit ( void );
+/* int timeInit ( void ); */
 int timeNow ( double* );
 int timeNowC ( timescale, int, int* );
 int timeNowD ( timescale, double* );
