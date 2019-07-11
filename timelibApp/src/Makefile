@@ -7,6 +7,7 @@ include $(TOP)/configure/CONFIG
 LIBRARY += timelib
 
 # For the build of the libraries
+timelib_SRCS_Linux += timeDump.c
 timelib_SRCS_Linux += timeNow.c
 timelib_SRCS_Linux += timeNowC.c
 timelib_SRCS_Linux += timeNowD.c
@@ -30,7 +31,7 @@ timelib_SRCS_DEFAULT += $(strip $(patsubst ../%.c, %.o, $(SRCS.c)))
 
 timeSeq_SNCFLAGS += +r +d
 timelib_DBD += timeSeq.dbd
-timelib_SRCS_DEFAULT += timeSeq.st
+timelib_SRCS += timeSeq.st
 timeSeq_LIBS += seq pv
 
 INC += timeLib.h
