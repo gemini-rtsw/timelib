@@ -181,7 +181,6 @@ sync tcsDelut  changedConfig ;
 float loopTime ;              /* Interval between monitors */
 int readstat ;                /* status from checking time */
 int prevstat ;                /* status from previous check */
-double BCmNTP ;               /* Bancomm - NTP (secs) */
 %%char  *timemac;             /* Pointer to macros */
 
 /* These variables are defaults for the time library global memory.
@@ -225,11 +224,12 @@ ss timeMon
     delut  = 0.338 ;    
     deltdb = 0.0 ;     
     biass = 0.0 ;     
-    timeClockCheck() ;
-    timeSetDefaults (tlong, tlat, xpm, ypm, ttmtai, djmls, delat,
+    /* timeClockCheck() ; */
+    /* timeSetDefaults (tlong, tlat, xpm, ypm, ttmtai, djmls, delat,
                      delut, deltdb, biass) ;
-    timeInit() ;
-    timeGetSimFlag(&timeSimFlag) ;
+    */
+    /* timeInit() ;*/
+    /* timeGetSimFlag(&timeSimFlag) q; */
     loopTime = 1.0 ;
     strcpy(timeMess, " ") ;
     strcpy(timeHealth, "GOOD") ;
@@ -244,14 +244,6 @@ ss timeMon
 
   state connecting
   {
-   when (timeSimFlag == TRUE)
-   {
-     strcpy(timeMess, " ") ;
-     strcpy(timeHealth, "GOOD") ;
-     pvPut(timeMess) ;
-     pvPut(timeHealth) ;
-   } state simulating
-
    when (pvConnectCount() == pvChannelCount())
    {
    } state checkState
@@ -278,9 +270,10 @@ ss timeMon
    pvGet(tcsDjmls) ;
    pvGet(tcsDelat) ;
    pvGet(tcsDelut) ;
-   timeSetDefaults(tcsTlong, tcsTlat, tcsXpm, tcsYpm, tcsTtmtai,
+   /* timeSetDefaults(tcsTlong, tcsTlat, tcsXpm, tcsYpm, tcsTtmtai,
                    tcsDjmls, tcsDelat, tcsDelut, tcsDeltdb, tcsBias) ;
-   timeInit() ;
+   */
+   /* timeInit() ; */
    } state monitoring
   }
 
@@ -292,49 +285,6 @@ ss timeMon
 
    when (delay(loopTime))
    {
-/* This code periodically reads the time from the Bancomm, and sets the 
- * time system health on the basis of the error returned
- */
-    readstat = timeCheck(&BCmNTP) & 0x05; /* ignore offset >5 us */
-    if ((BCmNTP > 2.0 || BCmNTP < -2.0) && readstat)
-    {
-       if (strcmp(timeHealth,"BAD") || prevstat != readstat)
-       {
-           strcpy(timeMess, "Bancomm time out by > 2s");
-           strcpy(timeHealth, "BAD") ;
-           prevstat = readstat ;
-           pvPut(timeMess);
-           pvPut(timeHealth) ;
-           sprintf(tcsLog, "Time: Error, status = %d", readstat) ;
-           pvPut(tcsLog) ;
-       }
-    }
-    else if ((BCmNTP < 2.0 && BCmNTP > -2.0) && readstat)
-    {
-       if (strcmp(timeHealth,"WARNING") || prevstat != readstat)
-       {
-           sprintf(timeMess, "Bancomm status %d", readstat) ;
-           strcpy(timeHealth, "WARNING") ;
-           prevstat = readstat ;
-           pvPut(timeMess);
-           pvPut(timeHealth) ;
-           sprintf(tcsLog, "Time: Warning, status = %d", readstat) ;
-           pvPut(tcsLog) ;
-       }
-    }
-    else
-    {
-       if (strcmp(timeHealth,"WARNING") || prevstat != readstat)
-       {
-           strcpy(timeMess, "No TCS connection");
-           strcpy(timeHealth, "WARNING") ;
-           prevstat = readstat ;
-           pvPut(timeMess);
-           pvPut(timeHealth) ;
-           sprintf (tcsLog, "Time: No TCS connection") ;
-           pvPut(tcsLog) ;
-       }
-    }
    } state waitConnect
   }
 
@@ -342,50 +292,6 @@ ss timeMon
   {
    when (delay(loopTime))
    {
-/* This code periodically reads the time from the Bancomm, and sets the 
- * time system health on the basis of the error returned
- */
-    readstat = timeCheck(&BCmNTP) & 0x05; /* ignore offset >5 us */
-    if ((BCmNTP > 2.0 || BCmNTP < -2.0) && readstat)
-    {
-       if (strcmp(timeHealth,"BAD") || prevstat != readstat)
-       {
-           strcpy(timeMess, "Bancomm time out by > 2s");
-           strcpy(timeHealth, "BAD") ;
-           prevstat = readstat ;
-           pvPut(timeMess) ;
-           pvPut(timeHealth) ;
-           sprintf(tcsLog, "Time: Health bad, status = %d", readstat) ;
-           pvPut(tcsLog) ;
-       }
-    }
-    else if ((BCmNTP < 2.0 && BCmNTP > -2.0) && readstat)
-    {
-       if (strcmp(timeHealth,"WARNING") || prevstat != readstat)
-       {
-           sprintf(timeMess, "Bancomm status %d", readstat) ;
-           strcpy(timeHealth, "WARNING") ;
-           prevstat = readstat ;
-           pvPut(timeMess) ;
-           pvPut(timeHealth) ;
-           sprintf(tcsLog, "Time: Health warning, status = %d", readstat) ;
-           pvPut(tcsLog) ;
-       }
-    }
-    else
-    {
-       if (strcmp(timeHealth,"GOOD") || prevstat != readstat)
-       {
-           strcpy(timeMess," ");
-           strcpy(timeHealth, "GOOD") ;
-           prevstat = readstat ;
-           pvPut(timeMess) ;
-           pvPut(timeHealth) ;
-           sprintf (tcsLog, "Time: Health good") ;
-           pvPut(tcsLog) ;
-       }
-    }
-
    } state monitoring
 
    when (pvConnectCount() < pvChannelCount())
@@ -400,7 +306,7 @@ ss timeMon
 
    when (efTestAndClear(changedTdb))
    {
-    timeLibRefresh(tcsDeltdb) ;
+    /* timeLibRefresh(tcsDeltdb) ; */
    } state monitoring
 
    when (efTestAndClear(changedConfig))
@@ -408,43 +314,11 @@ ss timeMon
     pvGet(tcsTlong) ;
     pvGet(tcsTlat) ;
     pvGet(tcsTtmtai);
-    timeSetDefaults(tcsTlong, tcsTlat, tcsXpm, tcsYpm, tcsTtmtai,
+    /* timeSetDefaults(tcsTlong, tcsTlat, tcsXpm, tcsYpm, tcsTtmtai,
                     tcsDjmls, tcsDelat, tcsDelut, tcsDeltdb, tcsBias) ;
+    */
    } state monitoring
 
   }
-
-/* 
- * This state monitors the tcs time variables but does not check the health
- * of the Bancomm card.
- */
-
-  state simulating
-  {
-   when (delay(30.0))
-   {
-   }  state simulating
-
-   when (efTestAndClear(changedBias))
-   {
-    timeOffset(tcsBias) ;
-   } state simulating
-
-   when (efTestAndClear(changedTdb))
-   {
-    timeLibRefresh(tcsDeltdb) ;
-   } state simulating
-
-   when (efTestAndClear(changedConfig))
-   {
-    pvGet(tcsTlong) ;
-    pvGet(tcsTlat) ;
-    pvGet(tcsTtmtai);
-    timeSetDefaults(tcsTlong, tcsTlat, tcsXpm, tcsYpm, tcsTtmtai,
-                    tcsDjmls, tcsDelat, tcsDelut, tcsDeltdb, tcsBias) ;
-   } state simulating
-
-  }
- 
 }
 

@@ -26,11 +26,10 @@ PROD_SUPP=/gem_sw/prod/$(EPICS_RELEASE)/support
 #TEST_SUPP=/home/mrippa/work/$(EPICS_RELEASE)/support
 
 TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
-SLALIB=$(PROD_SUPP)/slalib/1-9-8
-BANCOMM=$(PROD_SUPP)/bancomm/1-6-10
+SLALIB=$(PROD_SUPP)/slalib/1-9-10
 
 # If using the sequencer, point SNCSEQ at its top directory:
-SNCSEQ=$(PROD_SUPP)/seq/2-2-3-2
+SNCSEQ=$(PROD_SUPP)/seq/2-2-5-3
 
 #
 # EPICS_BASE usually appears last so other apps can override stuff:
