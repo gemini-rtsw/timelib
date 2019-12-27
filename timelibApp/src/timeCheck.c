@@ -3,13 +3,6 @@
 #include <bc635.h>
 #include "timesys.h"
 
-/* Add declaration of TSgetUnixTime. This should be got from an include
- * file but the only definition is in drvTS.c which we don't want to 
- * include.
-*/
-
-long TSgetUnixTime (struct timespec* ts) ;
-
 /*+
  *   Function name:
  *   timeCheck
@@ -43,7 +36,6 @@ long TSgetUnixTime (struct timespec* ts) ;
  * 
  *   External functions:
  *    bc635_read  (Bancomm library) Reads raw TAI
- *    TSgetUnixTime (EPICS Time Stamp library) Fetch UTC from NTP server
  *
  *-
  */
@@ -56,7 +48,6 @@ int timeCheck (double *BCmNTP)
   struct timespec tspec ;
   int simulate ;               /* Flag if time is being simulated */
   epicsTimeStamp now;
-  unsigned long pNSecs;
 
 
   readstat = 0 ;
@@ -78,10 +69,17 @@ int timeCheck (double *BCmNTP)
     if (epicsTimeToTimespec(&tspec, &now) != 0)
         return -1;
 
+    /* Commented out the lines that convert from UNIX time.
+     * The legacy code was using TSgetUnixTime; the new code
+     * calls epicsTimeGetCurrent. Substracting the leap seconds
+     * is not needed either.
       taiNTP = tspec.tv_sec + (double)tspec.tv_nsec/1000000000.0 
                             + datlsd * 86400.0 
                             - TS_1900_TO_UNIX_EPOCH ;
+     */
+      taiNTP = tspec.tv_sec + (double)tspec.tv_nsec/1000000000.0;
       *BCmNTP = taiBC - taiNTP ;
+      /* printf("Bancomm Time: %f , NTP Time %f , difference: %f, NTP Time human: %s \n", taiBC, taiNTP, *BCmNTP, now ); */
    }
   }
   return readstat ;

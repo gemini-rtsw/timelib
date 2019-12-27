@@ -89,7 +89,7 @@ int timeThenD ( double rawt, timescale scale, double *datemj )
 
 
 /* Initialize as required. */
-   if ( ! initd ) if ( (j = timeInit ( )) ) return j;
+   /* if ( ! initd ) if ( (j = timeInit ( )) ) return j; */
 
 /* Express given raw time in specified timescale. */
    switch ( scale ) {

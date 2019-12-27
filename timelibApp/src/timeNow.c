@@ -5,22 +5,20 @@
 /*  (under Unix) respectively.  The alternative sets of code   */
 /*  are selected through the vxWorks environment variable.     */
 /*                                                             */
+/*  20190701  mdw  The above is no longer true. There is now   */
+/*                 just one version that calls the EPICS OSI   */
+/*                 layer to get the current time of day.       */
 /***************************************************************/
 
 
 
 #include <epicsTime.h>
 #include "timesys.h"
-#include "stdio.h"
-
-#if defined (vxWorks) || defined (__rtems__)
-
-#include <bc635.h>
 
 /*
-**  --------------
-**  ONLINE VERSION
-**  --------------
+**  -----------------
+**  EPICS OSI VERSION
+**  -----------------
 */
 
 
@@ -75,11 +73,8 @@ int timeNow ( double *rawt )
 **  Returned (function value):
 **              int         status:  0 = OK
 **
-**  Called:  bc635_read
-**           clock_gettime
+**  Called:  epicsGetTimeCurrent
 **
-**  If time is being simulated the time library must be initialised so
-**  that datlsd is available.
 **
 **  Reference:  Gemini TCS/PTW/6.
 **
@@ -88,81 +83,10 @@ int timeNow ( double *rawt )
 **  Copyright 1997 RAL.  All rights reserved.
 */
 {
-   int j;
-   struct timespec tspec;
-   static int tcount = 0;
-
-   if (tsim && absent)
-   {
-
-	/*printf("tsim=%d,absent=%d\n", tsim, absent);*/
-
-      if ( (j = clock_gettime(CLOCK_REALTIME, &tspec )) ) return j;
-      *rawt = tspec.tv_sec + (double)tspec.tv_nsec / 1000000000.0;
-      if ( !initd ) if ( (j = timeInit()) ) return j;
-      *rawt += datlsd * 86400.0;
-   }
-   else
-   {
-
-/* Why zero all error bits here ? */
-      if ( (j = bc635_read ( rawt )) & (~0x07) ) return j;
-   }
-   *rawt += biass;
+   epicsTimeStamp ts;
+   epicsTimeGetCurrent(&ts);
+   *rawt = ts.secPastEpoch + ts.nsec/1000000000.0; /* convert to a double */
+   *rawt += datlsd/86400.0 + biass;                /* add leap seconds and testing offset */
+   *rawt += TS_EPICS_TO_UNIX_EPOCH;                /* convert from EPICS to Unix epoch */
    return 0;
 }
-
-#else
-
-/*
-**  ---------------
-**  OFFLINE VERSION
-**  ---------------
-*/
-
-int timeNow ( double *rawt )
-/*
-**  - - - - - - - -
-**   t i m e N o w
-**  - - - - - - - -
-**
-**  Read the current raw time, including the offset-for-testing.
-**
-**  USE OF THIS ROUTINE IN OFFLINE APPLICATIONS IS DEPRECATED.
-**
-**  Returned:
-**     rawt     double*     platform-dependent, but assumed to be SI
-**                          seconds since TAI 1970 January 1.0
-**
-**  Given (global data):
-**     datlsd   double      TAI-UTC before latest leap second (days)
-**     biass    double      offset for testing (sec):  added to clock reading
-**
-**  Returned (function value):
-**              int         status:  0 = OK
-**
-**  Reference:  Gemini TCS/PTW/6.
-**
-**  Last revision:   20 March 1997
-**
-**  Copyright 1997 RAL.  All rights reserved.
-*/
-{
-
-#ifdef _POSIX_TIMERS
-  
-   struct timespec tspec ;
-
-   (void) clock_gettime (CLOCK_REALTIME, &tspec ) ;
-   *rawt = (double)tspec.tv_sec + (double)tspec.tv_nsec/1000000000.0
-           + datlsd * 86400.0 + biass;
-
-#else
-
-   *rawt = (double) time ( (time_t*) NULL ) + datlsd * 86400.0 + biass;
-
-#endif
-   return 0;
-}
-
-#endif

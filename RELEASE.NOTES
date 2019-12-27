@@ -2,7 +2,7 @@
       Changes for the port to GEM8.5 (EPICS 3.13.9).
 
 03 January 2006    V1-8-1
-       Change default number of leap seconds to 33.0. 
+       Change default number of leap seconds to 33.0.
 
 11 January 2006   V1-8-2
       Modified timelibInstall to allow compiling for EPICS releases other
@@ -10,3 +10,29 @@
 
 11 January 2006   V1-8-4
       Modified to add the June 2012 leap second.
+
+<... time passes ...>
+
+19 December 2017  V1-9-7
+      Merged in changes to timeCheck changing the way we acquire the current
+      time, and how we derive taiNTP.
+
+      Also, changed timeSeq.st to ignore offset larger than 5µs, which
+      for us typically only leads to spurious alarms and bad health condition,
+      confusing the science users.
+
+27 December 2017  V1-9-8
+      Updated configure/RELEASE to depend on the 1-6-6 version of the
+      Bancomm support module.
+
+28 December 2017  V1-9-9
+      Updated configure/RELEASE to depend on the 1-6-7 version of the
+      Bancomm support module, which fixes the TZ bug
+
+28 December 2017  V1-9-10
+      Matt realized that there were some changes missing for release V1-9-7,
+      reintroducing the spurious bad health condition. Fixed.
+
+28 December 2017  V1-9-11
+      Fix the configure/RELEASE file, which became unusable for production
+      while merging the changes for he previous release.

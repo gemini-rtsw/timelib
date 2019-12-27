@@ -9,6 +9,7 @@
 **  Time functions, macros and global data include file.
 **
 **  Last revision:   19 March 1997
+**                   03 Jul 2019 mdw Added TS_EPICS_TO_UNIX_EPOCH
 **
 **  Copyright RAL.  All rights reserved.
 */
@@ -29,6 +30,13 @@
 *  way to prevent warnings over integer overflows
 */
 #define TS_1900_TO_UNIX_EPOCH 2208988800UL 
+
+/* TS_EPICS_TO_UNIX_EPOCH is [20 years * 365 days/year + 5 days] * 86400 seconds/per day.
+ *  [5 days is the number of leap years between 1 Jan 1970 (Unix Epoch) and 1 Jan 1990 
+ *  (EPICS Epoch)
+ */
+
+#define TS_EPICS_TO_UNIX_EPOCH 631152000UL
 
 /*
 **  ----
@@ -63,21 +71,8 @@
 /* Current LAST-GMST (radians) */
    extern double delstr;
 
-#if defined (vxWorks) || defined (__rtems__)
 
-/* Longitude corrected for polar motion */
-   extern double elongt;
 
-/* Time simulation flag */
-   extern int tsim;
-
-/* Flag to show if system running this code is time bus master */
-   extern int masterIOC;
-
-/* Flag to show if hardware is present or not */
-   extern int absent;
-
-#endif
 
 /*
 ** ------------

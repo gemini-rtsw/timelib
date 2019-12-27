@@ -10,11 +10,6 @@ double djmls;
 double dutd;
 double deltdbd;
 double delstr;
-#if defined (vxWorks) || defined (__rtems__)
-double elongt;
-int tsim;
-int masterIOC;
-int absent;
-#endif
+
 /* end of global variables */
 
