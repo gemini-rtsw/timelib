@@ -36,3 +36,24 @@
 28 December 2017  V1-9-11
       Fix the configure/RELEASE file, which became unusable for production
       while merging the changes for he previous release.
+
+29 January 2019   V2-0-9 (rcardenes)
+      Made timelib "Bancomm aware" again so that we can use new versions with
+      Bancomm systems. This is due to ADE versioning limitations. On the other
+      hand, in the process, the module has been made "Bancomm agnostic", and
+      the Bancomm dependency is still avoided.
+
+      The module is a drop-in replacemente for the 1-9 series, otherwise.
+
+      New timelib takes timeNow using the EPICS General Time mechanism, but
+      it was not applying corrections (eg. leap seconds) correctly. This has
+      been corrected and the function relies now on the global "absent"
+      variable (initialized elsewhere by bcTestCard) to decide if it needs
+      to apply corrections or not.
+
+      To pull this off without a Bancomm dependency, timelib provides now a
+      number of "fake" Bancomm functions that mostly return "error", signaling
+      a lack of Bancomm card. These are all exported as weak symbols, meaning
+      that they get replaced by the real Bancomm symbols if the Bancomm
+      support module is required by the IOC.
+      depend on the Bancomm card

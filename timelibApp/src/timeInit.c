@@ -12,18 +12,9 @@
 #include <slalib.h>
 #include <epicsTime.h>
 #include "timesys.h"
-
-#if defined (vxWorks) || defined (__rtems__)
-
-/*
-**  --------------
-**  ONLINE VERSION
-**  --------------
-*/
-
-
-#include <bc635.h>
+#include "aliases.h"
 #include <epicsStdio.h>
+#include <epicsExport.h>
 
 
 /* Add forward declaration of TSgetUnixTime. This is declared in drvTS.c 
@@ -189,7 +180,7 @@ int timeInit ( )
 
    if (!absent && simulate)
    {
-      gpstime = (time_t)(tspec.tv_sec + datlsd*86400.0 - 19);
+      gpstime = (time_t)(tspec.tv_sec + datlsd - 19);
       gtime   = gmtime( &gpstime );
 /* make sure time offset is 0 */
       bcSendTfp("M+00");
@@ -216,37 +207,4 @@ int timeInit ( )
    return 0;
 }
 
-#else
-
-/*
-**  ---------------
-**  OFFLINE VERSION
-**  ---------------
-*/
-
-int timeInit ( )
-/*
-**  - - - - - - - - -
-**   t i m e I n i t
-**  - - - - - - - - -
-**
-**  THIS FUNCTION SHOULD NEVER BE CALLED!
-**
-**  If it is called, it means the offline application has not
-**  initialized the time system properly, i.e. by calling the
-**  timeOffline function.
-**
-**  Returned (function value):
-**              int       status:  -1 = error
-**
-**  Reference:  Gemini TCS/PTW/6.
-**
-**  Last revision:   17 March 1997
-**
-**  Copyright 1997 RAL.  All rights reserved.
-*/
-{
-   return -1;
-}
-
-#endif
+epicsExportAddress(int, absent);

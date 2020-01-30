@@ -11,5 +11,10 @@ double dutd;
 double deltdbd;
 double delstr;
 
+double elongt;
+int tsim;
+int masterIOC;
+int absent;
+
 /* end of global variables */
 

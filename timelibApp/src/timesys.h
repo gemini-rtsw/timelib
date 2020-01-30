@@ -22,6 +22,9 @@
 **  ---------
 */
 
+#define NANOSEC_IN_SEC 1000000000.0
+#define SEC_IN_DAY 86400.0
+
 /* MJD for raw time epoch zero: 1970 January 1.0 (= Unix zero time). */
 #define TRAW_EPOCH 40587.0
 
@@ -71,7 +74,17 @@
 /* Current LAST-GMST (radians) */
    extern double delstr;
 
+/* Longitude corrected for polar motion */
+   extern double elongt;
 
+/* Time simulation flag */
+   extern int tsim;
+
+/* Flag to show if system running this code is time bus master */
+   extern int masterIOC;
+
+/* Flag to show if hardware is present or not */
+   extern int absent;
 
 
 /*

@@ -2,7 +2,7 @@
 #include <registryFunction.h>
 #include <epicsExport.h>
 #include <dbDefs.h>
-#include <bc635.h>
+#include "aliases.h"
 #include <epicsStdio.h>
 #include "timesys.h"
 

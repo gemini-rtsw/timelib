@@ -164,6 +164,36 @@ string tcsLog ;    assign tcsLog to "{sys}logrecord" ;
 int timeSimFlag ;  assign timeSimFlag to "{sys}TIME:intSimulate" ;      
 
 
+/* These variables are defaults for the time library global memory.
+ * They should agree with the numbers in the relevant GemNorth.default
+ * file.
+ */
+
+double tlong  ;          /* Site longitude (radians)*/
+double tlat   ;          /* site latitude (radians) */
+double xpm    ;          /* X component of polar motion (arcsec) */
+double ypm    ;          /* Y component of polar motion (arcsec) */
+double ttmtai ;          /* TT - TAI (seconds) */
+double djmls  ;          /* MJD of next leap second */
+double delat  ;          /* TAI - UTC before next leap second (seconds) */
+double delut  ;          /* UT1 - UTC (seconds) */
+double deltdb ;          /* delta TDB (days) */
+double biass ;           /* time offset (days) */
+
+/*
+assign tlong to "{top}timelib:tlong" ;
+assign tlat to "{top}timelib:tlat" ;
+assign xpm to "{top}timelib:xpm" ;
+assign ypm to "{top}timelib:ypm" ;
+assign ttmtai to "{top}timelib:ttmtai" ;
+assign djmls to "{top}timelib:djmls" ;
+assign delat to "{top}timelib:delat" ;
+assign delut to "{top}timelib:delut" ;
+assign deltdb to "{top}timelib:deltdb" ;
+assign biass to "{top}timelib:biass" ;
+*/
+
+
 evflag changedBias ;         /* Event flag to detect changes in time offset */
 evflag changedTdb ;          /* Event flag for changes in deltdb */
 evflag changedConfig ;       /* Event flag for changes in time configuration */
@@ -183,22 +213,6 @@ int readstat ;                /* status from checking time */
 int prevstat ;                /* status from previous check */
 %%char  *timemac;             /* Pointer to macros */
 
-/* These variables are defaults for the time library global memory.
- * They should agree with the numbers in the relevant GemNorth.default
- * file.
- */
-
-double tlong  ;          /* Site longitude (radians)*/
-double tlat   ;          /* site latitude (radians) */
-double xpm    ;          /* X component of polar motion (arcsec) */
-double ypm    ;          /* Y component of polar motion (arcsec) */
-double ttmtai ;          /* TT - TAI (seconds) */
-double djmls  ;          /* MJD of next leap second */
-double delat  ;          /* TAI - UTC before next leap second (seconds) */
-double delut  ;          /* UT1 - UTC (seconds) */
-double deltdb ;          /* delta TDB (days) */
-double biass ;           /* time offset (days) */
-
 /* Code for state set timeMon */
 
 ss timeMon
@@ -214,22 +228,24 @@ ss timeMon
  * the meantime, the system running this code will have access to all
  * possible time scales albeit with somewhat reduced accuracy
  */
+    printf("TIMESEQ: Initializing\n");
     tlong = -155.471667 ;
     tlat  = 19.826667 ;
-    xpm    = 0.05 ;     
-    ypm    = 0.4 ;     
-    ttmtai = 32.184 ; 
-    djmls  = 999999.9 ;    
-    delat  = 37.0 ;      
-    delut  = 0.338 ;    
-    deltdb = 0.0 ;     
-    biass = 0.0 ;     
-    /* timeClockCheck() ; */
-    /* timeSetDefaults (tlong, tlat, xpm, ypm, ttmtai, djmls, delat,
+    xpm    = 0.05 ;
+    ypm    = 0.4 ;
+    ttmtai = 32.184 ;
+    djmls  = 999999.9 ;
+    delat  = 37.0 ;
+    delut  = 0.338 ;
+    deltdb = 0.0 ;
+    biass = 0.0 ;
+
+    timeSetDefaults (tlong, tlat, xpm, ypm, ttmtai, djmls, delat,
                      delut, deltdb, biass) ;
-    */
-    /* timeInit() ;*/
-    /* timeGetSimFlag(&timeSimFlag) q; */
+
+    timeClockCheck() ;
+    timeInit() ;
+    timeGetSimFlag(&timeSimFlag);
     loopTime = 1.0 ;
     strcpy(timeMess, " ") ;
     strcpy(timeHealth, "GOOD") ;
@@ -270,9 +286,8 @@ ss timeMon
    pvGet(tcsDjmls) ;
    pvGet(tcsDelat) ;
    pvGet(tcsDelut) ;
-   /* timeSetDefaults(tcsTlong, tcsTlat, tcsXpm, tcsYpm, tcsTtmtai,
+   timeSetDefaults(tcsTlong, tcsTlat, tcsXpm, tcsYpm, tcsTtmtai,
                    tcsDjmls, tcsDelat, tcsDelut, tcsDeltdb, tcsBias) ;
-   */
    /* timeInit() ; */
    } state monitoring
   }
@@ -314,9 +329,8 @@ ss timeMon
     pvGet(tcsTlong) ;
     pvGet(tcsTlat) ;
     pvGet(tcsTtmtai);
-    /* timeSetDefaults(tcsTlong, tcsTlat, tcsXpm, tcsYpm, tcsTtmtai,
+    timeSetDefaults(tcsTlong, tcsTlat, tcsXpm, tcsYpm, tcsTtmtai,
                     tcsDjmls, tcsDelat, tcsDelut, tcsDeltdb, tcsBias) ;
-    */
    } state monitoring
 
   }
