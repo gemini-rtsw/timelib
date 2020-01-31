@@ -89,9 +89,9 @@ int timeNow ( double *rawt )
    *rawt = ts.secPastEpoch + ts.nsec/NANOSEC_IN_SEC; /* convert to a double */
    /* If not using the Bancomm, which provides TAI, assume UTC and add leap seconds */
    if (absent != 0) {
-	   *rawt += datlsd * SEC_IN_DAY;
+	   *rawt += datlsd * SEC_IN_DAY;           // Add leap seconds
    }
-   *rawt += biass;                                 /* add leap seconds and testing offset */
+   *rawt += biass;                                 /* Add testing offset */
    *rawt += TS_EPICS_TO_UNIX_EPOCH;                /* convert from EPICS to Unix epoch */
    return 0;
 }
