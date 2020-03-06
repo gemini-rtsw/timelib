@@ -52,6 +52,10 @@ extern "C" {
 #define ERROR (-1)
 #endif
 
+#ifndef NTPONLY
+#define NTPONLY 127
+#endif
+
 /*
  * These functions are provided as weak symbols for the case when the
  * Bancomm driver is not linked in (eg. building for Linux)
@@ -123,7 +127,7 @@ long  bc635_init (void) {
 
 int bcTestCard( void ) {
 	printf("FAKE bcTestCard: Returning ERROR\n");
-	return ERROR;
+	return NTPONLY;
 }
 
 /***********************************************************************

@@ -15,6 +15,15 @@
 #include "aliases.h"
 #include <epicsStdio.h>
 #include <epicsExport.h>
+#include <errlog.h>
+
+static void setDelStr() {
+   double tdb;
+
+/* LAST minus GMST */
+   timeNowD ( TDB, &tdb );
+   delstr = slaDranrm ( elongt + slaEqeqx ( tdb ) );
+}
 
 
 /* Add forward declaration of TSgetUnixTime. This is declared in drvTS.c 
@@ -108,7 +117,6 @@ int timeInit ( )
 {
 
    int j;
-   double tdb;
    struct timespec tspec;
    int simulate;               /* TRUE if time is to be simulated */
    int master;                 /* TRUE if this is the timing master */
@@ -129,6 +137,12 @@ int timeInit ( )
 
    timeGetSimFlag ( &simulate );
    timeGetMasterIOC ( &master );
+
+   if (absent == 127) // Fake Bancomm driver
+   {
+       errlogPrintf("timelib: timeInit detected a fake bancomm driver. Initializing ST and returning\n");
+       goto bail;
+   }
 
 /* First consistency check. Has system been started in non-simulate mode
  * but there is no hardware to support this ?
@@ -197,12 +211,12 @@ int timeInit ( )
    }
 
 
+bail:
 /* Set the "initialized" flag so that timeNow doesn't call timeInit. */
    initd = 1;
 
-/* LAST minus GMST */
-   timeNowD ( TDB, &tdb );
-   delstr = slaDranrm ( elongt + slaEqeqx ( tdb ) );
+   // Set the ST offset
+   setDelStr();
 
    return 0;
 }
