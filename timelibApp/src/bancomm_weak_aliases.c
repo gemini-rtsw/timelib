@@ -15,6 +15,8 @@
 #include "aliases.h"
 #include <iocsh.h>
 #include <stdio.h>
+#include <devSup.h>
+#include <drvSup.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -226,6 +228,39 @@ static void BCTestFunctions(void) {
    iocshRegister(&bcSetRTCFuncDef, bcSetRTCCallFunc);
 }
 
+static struct {
+        long    number;
+        DRVSUPFUN       report;
+        DRVSUPFUN       init;
+} drvBc635={
+        2,
+        NULL,
+        NULL
+};
+
+epicsExportAddress(drvet, drvBc635);
+
+typedef struct
+{
+    long number;
+    DEVSUPFUN report;
+    DEVSUPFUN init;
+    DEVSUPFUN init_record;
+    DEVSUPFUN get_ioint_info;
+    DEVSUPFUN read_write;
+    DEVSUPFUN special_linconv;
+} DEV_BC635;
+
+static DEV_BC635 devAiBc635 =
+    {6, NULL, NULL, NULL, NULL, NULL, NULL};
+static DEV_BC635 devAoBc635 =
+    {6, NULL, NULL, NULL, NULL, NULL, NULL};
+static DEV_BC635 devSiBc635 =
+    {6, NULL, NULL, NULL, NULL, NULL, NULL};
+static DEV_BC635 devSoBc635 =
+    {6, NULL, NULL, NULL, NULL, NULL, NULL};
+
+
 epicsExportRegistrar(bc635TimeRegister);
 epicsExportRegistrar(bc635_reportRegister);
 epicsExportRegistrar(BCconfigureRegister);
@@ -240,3 +275,7 @@ epicsExportAddress(int, bcConfiguredOK );
 epicsExportAddress(int, bcYearEpoch);
 epicsExportAddress(int, bcDebug);
 epicsExportAddress(int, bc_usec_ignore);
+epicsExportAddress(dset, devAiBc635);
+epicsExportAddress(dset, devAoBc635);
+epicsExportAddress(dset, devSiBc635);
+epicsExportAddress(dset, devSoBc635);

@@ -37,7 +37,7 @@
       Fix the configure/RELEASE file, which became unusable for production
       while merging the changes for he previous release.
 
-29 January 2019   V2-0-9 (rcardenes)
+29 January 2019   V2-1-1 (rcardenes)
       Made timelib "Bancomm aware" again so that we can use new versions with
       Bancomm systems. This is due to ADE versioning limitations. On the other
       hand, in the process, the module has been made "Bancomm agnostic", and
@@ -57,3 +57,11 @@
       that they get replaced by the real Bancomm symbols if the Bancomm
       support module is required by the IOC.
       depend on the Bancomm card
+
+06 March 2020   V2-1-2 (rcardenes)
+      Fixed a bug that prevented the ST offset (GMST vs local) to be calculated
+      properly when the Bancomm card is deemed to be in "simulated" mode (which
+      applies when the fake driver is used)
+
+20 March 2020   V2-1-3 (rcardenes)
+      Expanded the fake driver to cover the needs of timeProbe.
