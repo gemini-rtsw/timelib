@@ -27,7 +27,7 @@ TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 SLALIB=$(PROD_SUPP)/slalib/1-9-10-R315
 
 # If using the sequencer, point SNCSEQ at its top directory:
-SNCSEQ=$(PROD_SUPP)/seq/2-2-5-3-R314
+SNCSEQ=$(PROD_SUPP)/seq/2-2-5-3-R315
 
 #
 # EPICS_BASE usually appears last so other apps can override stuff:
