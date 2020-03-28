@@ -59,7 +59,7 @@
                   LAST      /* Local Apparent Sidereal Time */
                 } timescale;
 
-/* int timeInit ( void ); */
+int timeInit ( void );
 int timeNow ( double* );
 int timeNowC ( timescale, int, int* );
 int timeNowD ( timescale, double* );
@@ -75,5 +75,19 @@ int timeThenT ( double, timescale, int, int* );
 int timeOffline ( double, double, double, double, double, double, double );
 int timePrint( char* );
 
+void timeClockCheck ( void );
+int timeClockInit (int master, int simulate, int intPerSecond,
+                   int intPerTick, int timeOffset );
+void timeClockReport ( void );
+void timeSetSimFlag ( int simulate );
+void timeGetSimFlag ( int *simulate );
+void timeSetMasterIOC ( int master );
+void timeGetMasterIOC ( int *master );
+void timeDump( void );
+void timeSetDefaults ( double tlongm, double tlatm, double xpmr, double ypmr,
+                       double ttmtai, double mjdls, double delat,
+                       double delut, double deltdb, double bias );
+int  timeCheck( double *timeDiff );
+void timeLibRefresh (double deltdb);
 
 #endif

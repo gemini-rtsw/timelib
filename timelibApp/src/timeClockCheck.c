@@ -2,7 +2,7 @@
 #include <registryFunction.h>
 #include <epicsExport.h>
 #include <dbDefs.h>
-#include <bc635.h>
+#include "aliases.h"
 #include <epicsStdio.h>
 #include "timesys.h"
 
@@ -52,8 +52,6 @@ void timeClockCheck( )
   int bcReadStat ;     /* status from bc635_read call */
   double tai ;         /* TAI returned from bc635_read */
   int unsynched ;      /* TRUE if Bancomm is not synched */
-  int tooLarge ;       /* TRUE if Time offset from Bancomm is too large */
-  int freqOffsetErr ;  /* TRUE if freq. offset error from Bancomm */
 
 /* check if Bancomm card is present */
 
@@ -90,8 +88,6 @@ void timeClockCheck( )
    numGPSLeapSecs = bcGetGpsLeap( ) ;
    bcReadStat     = bc635_read(&tai) ;
    unsynched = bcReadStat & 0x01 ;
-   tooLarge  = bcReadStat & 0x02 ;
-   freqOffsetErr = bcReadStat & 0x04 ;
 
    if (master)                /* handle cases where master is requested */
    {

@@ -3,7 +3,7 @@
 #include <registryFunction.h>
 #include <epicsExport.h>
 
-#include <bc635.h>
+#include "aliases.h"
 #include "timesys.h"
 
 

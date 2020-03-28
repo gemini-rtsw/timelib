@@ -12,18 +12,18 @@
 #include <slalib.h>
 #include <epicsTime.h>
 #include "timesys.h"
-
-#if defined (vxWorks) || defined (__rtems__)
-
-/*
-**  --------------
-**  ONLINE VERSION
-**  --------------
-*/
-
-
-#include <bc635.h>
+#include "aliases.h"
 #include <epicsStdio.h>
+#include <epicsExport.h>
+#include <errlog.h>
+
+static void setDelStr() {
+   double tdb;
+
+/* LAST minus GMST */
+   timeNowD ( TDB, &tdb );
+   delstr = slaDranrm ( elongt + slaEqeqx ( tdb ) );
+}
 
 
 /* Add forward declaration of TSgetUnixTime. This is declared in drvTS.c 
@@ -117,7 +117,6 @@ int timeInit ( )
 {
 
    int j;
-   double tdb;
    struct timespec tspec;
    int simulate;               /* TRUE if time is to be simulated */
    int master;                 /* TRUE if this is the timing master */
@@ -138,6 +137,12 @@ int timeInit ( )
 
    timeGetSimFlag ( &simulate );
    timeGetMasterIOC ( &master );
+
+   if (absent == 127) // Fake Bancomm driver
+   {
+       errlogPrintf("timelib: timeInit detected a fake bancomm driver. Initializing ST and returning\n");
+       goto bail;
+   }
 
 /* First consistency check. Has system been started in non-simulate mode
  * but there is no hardware to support this ?
@@ -189,7 +194,7 @@ int timeInit ( )
 
    if (!absent && simulate)
    {
-      gpstime = (time_t)(tspec.tv_sec + datlsd*86400.0 - 19);
+      gpstime = (time_t)(tspec.tv_sec + datlsd - 19);
       gtime   = gmtime( &gpstime );
 /* make sure time offset is 0 */
       bcSendTfp("M+00");
@@ -206,47 +211,14 @@ int timeInit ( )
    }
 
 
+bail:
 /* Set the "initialized" flag so that timeNow doesn't call timeInit. */
    initd = 1;
 
-/* LAST minus GMST */
-   timeNowD ( TDB, &tdb );
-   delstr = slaDranrm ( elongt + slaEqeqx ( tdb ) );
+   // Set the ST offset
+   setDelStr();
 
    return 0;
 }
 
-#else
-
-/*
-**  ---------------
-**  OFFLINE VERSION
-**  ---------------
-*/
-
-int timeInit ( )
-/*
-**  - - - - - - - - -
-**   t i m e I n i t
-**  - - - - - - - - -
-**
-**  THIS FUNCTION SHOULD NEVER BE CALLED!
-**
-**  If it is called, it means the offline application has not
-**  initialized the time system properly, i.e. by calling the
-**  timeOffline function.
-**
-**  Returned (function value):
-**              int       status:  -1 = error
-**
-**  Reference:  Gemini TCS/PTW/6.
-**
-**  Last revision:   17 March 1997
-**
-**  Copyright 1997 RAL.  All rights reserved.
-*/
-{
-   return -1;
-}
-
-#endif
+epicsExportAddress(int, absent);
