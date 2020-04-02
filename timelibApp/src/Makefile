@@ -48,5 +48,6 @@ timeSeq_LIBS += seq pv
 
 INC += timeLib.h
 INC += timesys.h
+INC += bc635Aliases.h
 
 include $(TOP)/configure/RULES

@@ -12,7 +12,7 @@
 #include <slalib.h>
 #include <epicsTime.h>
 #include "timesys.h"
-#include "aliases.h"
+#include "bc635Aliases.h"
 #include <epicsStdio.h>
 #include <epicsExport.h>
 #include <errlog.h>

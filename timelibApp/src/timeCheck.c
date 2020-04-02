@@ -1,6 +1,6 @@
 
 #include <epicsTime.h>
-#include "aliases.h"
+#include "bc635Aliases.h"
 #include "timesys.h"
 
 /*+

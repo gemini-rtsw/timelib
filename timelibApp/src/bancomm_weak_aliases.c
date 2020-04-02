@@ -12,7 +12,7 @@
  * that link against those, "pulling" along the actual symbols that we wanted
  * to bring in.
  ****************************************************************************/
-#include "aliases.h"
+#include "bc635Aliases.h"
 #include <iocsh.h>
 #include <stdio.h>
 #include <devSup.h>
