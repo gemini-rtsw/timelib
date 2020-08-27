@@ -20,22 +20,19 @@
 # CONFIG_SITE file.
 
 PROD_SUPP=/gem_base/epics/support
-WORK_SUPP=/gem_base/epics/support
 
 TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 SLALIB=$(PROD_SUPP)/slalib
 
-#SLALIB=$(WORK_SUPP)/slalib
-
 # If using the sequencer, point SNCSEQ at its top directory:
 SNCSEQ=$(PROD_SUPP)/sequencer
-
-#SNCSEQ=$(WORK_SUPP)/sequencer
 
 #
 # EPICS_BASE usually appears last so other apps can override stuff:
 EPICS_BASE=/gem_base/epics/epics-base
+-include $(TOP)/configure/RELEASE.local
 
 # Set RULES here if you want to take build rules from somewhere
 # other than EPICS_BASE:
 #RULES=/path/to/epics/support/module/rules/x-y
+
