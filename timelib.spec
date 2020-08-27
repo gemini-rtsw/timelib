@@ -84,6 +84,16 @@ rm -rf $RPM_BUILD_ROOT
    /%{_prefix}/%{name}/configure
 
 %changelog
+* Thu Aug 27 2020 Felix Kraemer <fkraemer@gemini.edu> 3.15.8-2.1.4.20200827111187ee95b
+- Deleted WORK_SUPP definition in configure/RELEASE because it causes conflicts
+  if used in other modules For local development, add a configure/RELEASE.local
+  file to overwrite definitions in configure/RELEASE Added
+  configure/RELEASE.local to .gitignore file (fkraemer@gemini.edu)
+- Added support dbd file to be used by IOCs (iarriagada@gemini.edu)
+- Release tag enriched with hour and minute (%%H%%M) to be able to build
+  several RPMs a day without messing up the repo (fkraemer@gemini.edu)
+- fixed support module path (fkraemer@gemini.edu)
+
 * Sun Jul 26 2020 fkraemer <fkraemer@gemini.edu> 3.15.8-2.1.4.20200726abab08c
 - new package built with tito
 
