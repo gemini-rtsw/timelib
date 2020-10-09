@@ -19,7 +19,7 @@
 Summary: %{name} Package, a module for EPICS base
 Name: %{name}
 Version: 2.1.4
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: EPICS Open License
 Group: Applications/Engineering
 Source0: %{name}-%{version}.tar.gz
@@ -82,6 +82,11 @@ rm -rf $RPM_BUILD_ROOT
    /%{_prefix}/%{name}/configure
 
 %changelog
+* Thu Oct 08 2020 fkraemer <fkraemer@gemini.edu> 2.1.4-2
+- applied new version/release scheme and new yum repository structure
+- Automatic commit of package [timelib] release
+  [3.15.8-2.1.4.2020080504548d6ed0c].
+
 * Thu Aug 27 2020 Felix Kraemer <fkraemer@gemini.edu> 3.15.8-2.1.4.20200827111187ee95b
 - Deleted WORK_SUPP definition in configure/RELEASE because it causes conflicts
   if used in other modules For local development, add a configure/RELEASE.local
