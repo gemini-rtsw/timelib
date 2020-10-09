@@ -7,9 +7,12 @@ include $(TOP)/configure/CONFIG
 LIBRARY += timelib
 
 DBD += timelib.dbd
+DBD += timelibSupp.dbd
 
-# timelib_DBD += base.dbd
-# timelib_DBD += timelib_reg.dbd
+timelibSupp_DBD += timelibreg.dbd
+
+timelib_DBD += $(timelibSupp_DBD)
+timelib_DBD += base.dbd
 
 # For the build of the libraries
 timelib_SRCS += timeCheck.c

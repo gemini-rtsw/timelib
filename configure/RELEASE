@@ -30,7 +30,9 @@ SNCSEQ=$(PROD_SUPP)/sequencer
 #
 # EPICS_BASE usually appears last so other apps can override stuff:
 EPICS_BASE=/gem_base/epics/epics-base
+-include $(TOP)/configure/RELEASE.local
 
 # Set RULES here if you want to take build rules from somewhere
 # other than EPICS_BASE:
 #RULES=/path/to/epics/support/module/rules/x-y
+
