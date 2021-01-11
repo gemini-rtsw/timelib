@@ -194,7 +194,7 @@ int timeInit ( )
 
    if (!absent && simulate)
    {
-      gpstime = (time_t)(tspec.tv_sec + datlsd - 19);
+      gpstime = (time_t)(tspec.tv_sec + datlsd*86400.0 - 19);
       gtime   = gmtime( &gpstime );
 /* make sure time offset is 0 */
       bcSendTfp("M+00");

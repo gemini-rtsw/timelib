@@ -288,7 +288,7 @@ ss timeMon
    pvGet(tcsDelut) ;
    timeSetDefaults(tcsTlong, tcsTlat, tcsXpm, tcsYpm, tcsTtmtai,
                    tcsDjmls, tcsDelat, tcsDelut, tcsDeltdb, tcsBias) ;
-   /* timeInit() ; */
+   timeInit() ; 
    } state monitoring
   }
 
@@ -321,7 +321,7 @@ ss timeMon
 
    when (efTestAndClear(changedTdb))
    {
-    /* timeLibRefresh(tcsDeltdb) ; */
+    timeLibRefresh(tcsDeltdb) ; 
    } state monitoring
 
    when (efTestAndClear(changedConfig))

@@ -35,6 +35,7 @@ timelib_SRCS += timeRaw2tai.c
 timelib_SRCS += timeSetDefaults.c
 timelib_SRCS += timeSetMasterIOC.c
 timelib_SRCS += timeSetSimFlag.c
+timelib_SRCS += timeLibRefresh.c
 timelib_SRCS += timeTai2raw.c
 timelib_SRCS += timeThenC.c
 timelib_SRCS += timeThenD.c

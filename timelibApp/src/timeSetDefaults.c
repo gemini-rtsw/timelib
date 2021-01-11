@@ -51,6 +51,8 @@ void timeSetDefaults (double tlongm, double tlatm, double xpm, double ypm,
 
   slaPolmo ( tlongm, tlatm, xpm, ypm, &elongt, &phit, &daz ) ;
 
+  printf("timeSetDefaults: elongt %-+25.15g tlongm %-+25.15g tlatm %-+25.15g\n", elongt, tlongm, tlatm );
+
   dttd = ttmtai / 86400. ;
   datlsd = delat / 86400. ;
   dutd = delut / 86400. ;
