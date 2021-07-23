@@ -9,10 +9,11 @@ LIBRARY += timelib
 DBD += timelib.dbd
 DBD += timelibSupp.dbd
 
+timelibSupp_DBD += stdRecords.dbd
 timelibSupp_DBD += timelibreg.dbd
 
-timelib_DBD += $(timelibSupp_DBD)
 timelib_DBD += base.dbd
+timelib_DBD += timelibreg.dbd
 
 # For the build of the libraries
 timelib_SRCS += timeCheck.c

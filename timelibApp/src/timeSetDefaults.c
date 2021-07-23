@@ -1,3 +1,4 @@
+#include <epicsStdioRedirect.h>
 #include <slalib.h>
 #include <slamac.h>
 #include "timesys.h"

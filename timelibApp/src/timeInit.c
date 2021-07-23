@@ -122,7 +122,7 @@ int timeInit ( )
    int master;                 /* TRUE if this is the timing master */
    time_t gpstime;             /* GPS time */
    struct tm *gtime;           /* GPS time */
-   char rtctime[14];           /* String to send to RTC */
+   char rtctime[15];           /* String to send to RTC */
    epicsTimeStamp now;
    
 
@@ -198,7 +198,7 @@ int timeInit ( )
       gtime   = gmtime( &gpstime );
 /* make sure time offset is 0 */
       bcSendTfp("M+00");
-      sprintf ( rtctime, "L%02d%02d%02d%02d%02d%02d%c", (gtime->tm_year)%100, 
+      sprintf ( rtctime, "%02hd%02hd%02hd%02hd%02hd%02hd%c", (gtime->tm_year)%100, 
                 gtime->tm_mon+1, gtime->tm_mday, gtime->tm_hour, gtime->tm_min,
                 gtime->tm_sec,'\0' );
 /*
