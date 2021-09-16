@@ -8,4 +8,5 @@ include:
       
 
 variables:
-    BASE_CONTAINER: "registry.gitlab.com/nsf-noirlab/gemini/rtsw/iocs/softtcs_mk/unstable/containerization:latest"
+    MASTER: testing
+    BASE_CONTAINER: "registry.gitlab.com/nsf-noirlab/gemini/rtsw/iocs/softtcs_mk/testing/containerization:latest"
