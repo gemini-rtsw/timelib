@@ -105,4 +105,3 @@ rm -rf $RPM_BUILD_ROOT
 * Sun Jul 26 2020 fkraemer <fkraemer@gemini.edu> 3.15.8-2.1.4.20200726abab08c
 - new package built with tito
 
-
