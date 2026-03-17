@@ -1,0 +1,910 @@
+Date: Fri, 6 Mar 2026 04:01:39 +0000 (UTC)
+Message-ID: <1996354929.37.1772769699703@f59ec9b0ccbe>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_36_1868186856.1772769699703"
+
+------=_Part_36_1868186856.1772769699703
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Leap Seconds</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Leap Seconds</h1>
+    <div class=3D"Section1">
+        <style type=3D"text/css">/*<![CDATA[*/
+div.rbtoc1772769699613 {padding: 0px;}
+div.rbtoc1772769699613 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1772769699613 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style>
+<div class=3D"toc-macro rbtoc1772769699613">
+<ul class=3D"toc-indentation">
+<li><a href=3D"#LeapSeconds-Introduction">Introduction</a></li>
+<li><a href=3D"#LeapSeconds-ChangestotheSoftware">Changes to the Software</=
+a>
+<ul class=3D"toc-indentation">
+<li><a href=3D"#LeapSeconds-TCS">TCS</a></li>
+<li><a href=3D"#LeapSeconds-Timelib">Timelib</a></li>
+<li><a href=3D"#LeapSeconds-Slalib">Slalib</a></li>
+<li><a href=3D"#LeapSeconds-Flamingos2">Flamingos 2</a></li>
+<li><a href=3D"#LeapSeconds-GPI">GPI</a>
+<ul class=3D"toc-indentation">
+<li><a href=3D"#LeapSeconds-GMP">GMP</a></li>
+<li><a href=3D"#LeapSeconds-Timelib/Slalib">Timelib / Slalib</a>
+<ul class=3D"toc-indentation">
+<li><a href=3D"#LeapSeconds-EPICS">EPICS</a></li>
+<li><a href=3D"#LeapSeconds-Slalib.1">Slalib</a></li>
+<li><a href=3D"#LeapSeconds-Timelib.1">Timelib</a></li>
+</ul></li>
+<li><a href=3D"#LeapSeconds-TLC">TLC</a></li>
+</ul></li>
+</ul></li>
+<li><a href=3D"#LeapSeconds-Emails">Emails</a></li>
+<li><a href=3D"#LeapSeconds-References">References</a></li>
+</ul>
+</div>
+<h1 local-id=3D"4c0aa8696935" id=3D"LeapSeconds-Introduction">Introduction<=
+/h1>
+<p local-id=3D"2b9739bad5dd">A leap second is a one-second adjustment that =
+is occasionally applied to Coordinated Universal Time (UTC) in order to kee=
+p its time of day close to the mean solar time. Insertion of each UTC leap =
+second is usually decided <strong>about six months in advance</strong> by t=
+he International Earth Rotation and Reference Systems Service (IERS), when =
+needed to ensure that the difference between the UTC and UT1 readings will =
+never exceed 0.9 second.</p>
+<h1 local-id=3D"b1a8e6ad8992" id=3D"LeapSeconds-ChangestotheSoftware">Chang=
+es to the Software</h1>
+<p local-id=3D"e38a40b2a5d9">There are changes that must be done between th=
+e time the leap second is announced and before it is applied. The other set=
+ of changes should be done and after the leap second is applied. It is not =
+critical to do the after-leap-second changes on July or January first, but =
+it is important that all the after-leap-second changes are done at the same=
+ time.</p>
+<p local-id=3D"2b8def407adc">Adding (or subtracting) a leap second involves=
+ changes in the following software components:</p>
+<ul local-id=3D"2cbd4cbd6747">
+<li local-id=3D"b8fbd7132ff1">
+<p local-id=3D"460f9a606f33">TCS</p></li>
+<li local-id=3D"1651aece23cf">
+<p local-id=3D"23638d5cd4a5">timelib</p></li>
+<li local-id=3D"9f840bb85de8">
+<p local-id=3D"3a5b7bce4b66">slalib</p></li>
+<li local-id=3D"ab098a9a1a82">
+<p local-id=3D"23125593550a">GPI</p></li>
+</ul>
+<p local-id=3D"5f288364734e">In the case of slalib and timelib, both the Vx=
+Works, RTEMS and Linux versions should be updated. However, the change on t=
+he telops workstations is not critical and can wait until the next schedule=
+d software release.</p>
+<p local-id=3D"663ec4e94e36">All the examples in this page correspond to th=
+e leap second announced for December 31st 2017. The values should be update=
+d for the new leap second.</p>
+<h2 local-id=3D"6355a4c4e3fb" id=3D"LeapSeconds-TCS">TCS</h2>
+<p local-id=3D"b8bfe09e5e87">When the leap second is announced and <strong>=
+before</strong> it's applied, change the value of <em>djmls</em> in <em>Gem=
+North.default</em> and <em>GemSouth.default</em> to the day the leap second=
+ will be applied:</p>
+<p local-id=3D"953528fa06d0">In the following section:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">#
+# Quasi-fixed parameters (TCS/PTW/4.4)
+#
+double $(top)ak:delut =3D 0.0;           # UT1 - UTC (seconds)=20
+double $(top)ak:delat =3D 36.0;          # TAI - UTC (seconds)  &lt;--
+double $(top)ak:ttmtai =3D 32.184;       # TT - TAI (seconds)
+double $(top)ak:xpm    =3D 0.0;          # X polar motion (arcsec)=20
+double $(top)ak:ypm   =3D 0.0;           # Y polar motion (arcsec)=20
+double $(top)ak:slow.A =3D 278.16;       # Initial air temperature (deg K)
+double $(top)ak:slow.B =3D 615.0;        # Initial pressure (mbars)
+double $(top)ak:slow.C =3D  0.2;         # Initial relative humidity
+double $(top)ak:tempMax =3D 50.0;        # Max air temperature (deg C)
+double $(top)ak:tempMin =3D -40.0;       # Min air temparature (deg C)
+double $(top)ak:tempDefault =3D  5.0;    # Default temperature
+double $(top)ak:pressMax =3D 1100.0;     # Max air pressure (millibars)
+double $(top)ak:pressMin =3D 300.0;      # Min air pressure (millibars)
+double $(top)ak:pressDefault =3D  615.0; # Default air pressure (millibars)
+double $(top)ak:humidMax =3D 100.0;      # Max relative humidity (% RH)
+double $(top)ak:humidMin =3D 0.0;        # Min  relative humidity (% RH)
+double $(top)ak:humidDefault =3D  20.0;  # Default relative humidity (% RH)
+double $(top)ak:tlr   =3D  0.0065;       # Tropospheric lapse rate (deg K /=
+ m)
+double $(top)ak:wavel =3D  0.5;          # Default wavelength (microns)
+double $(top)ak:djmls =3D 999999.9;      # MJD of next leap second   &lt;--
+double $(top)ak:biass =3D 0.0;           # Time offset for testing (seconds=
+)
+
+double $(top)ak:xim   =3D  0.0;          # X pointing origin (mm)
+double $(top)ak:yim   =3D  0.0;          # Y pointing origin (mm)</pre>
+</div>
+</div>
+<p local-id=3D"077b397cc572">The line containing the Modified Julian Date f=
+or the next leap second:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">double =
+$(top)ak:djmls =3D 999999.9;      # MJD of next leap second</pre>
+</div>
+</div>
+<p local-id=3D"9117de975dde">should change to the MJD of the next leap seco=
+nd:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">double =
+$(top)ak:djmls =3D 57754.0;      # MJD of next leap second (2017/01/01)</pr=
+e>
+</div>
+</div>
+<p local-id=3D"06fffbcaa889">Then any time <strong>after</strong> the leap =
+second is applied, change the following lines from:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">double =
+$(top)ak:delat =3D 36.0;          # TAI - UTC (seconds)</pre>
+</div>
+</div>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">double =
+$(top)ak:djmls =3D 57754.0;      # MJD of next leap second (2017/01/01)</pr=
+e>
+</div>
+</div>
+<p local-id=3D"d7c98086a4c4">to the following values, to be consistent with=
+ the new leap second settings:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">double =
+$(top)ak:delat =3D 37.0;          # TAI - UTC (seconds)</pre>
+</div>
+</div>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">double =
+$(top)ak:djmls =3D 99999.0;      # MJD of next leap second</pre>
+</div>
+</div>
+<h2 local-id=3D"5d0534c90809" id=3D"LeapSeconds-Timelib">Timelib</h2>
+<p local-id=3D"cb9662953850">After the leap second is applied, add (or subt=
+ract) one second the <em><strong>delat</strong></em> value in <em>timeSeq.s=
+t</em>.<br>
+For December 2016 the value changes from 36 to 37.</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">/* The =
+purpose of this code is to initialise the time library with=20
+ * reasonable values as soon as possible. Once the TCS is up and running
+ * these initial values will get updated with more accurate numbers. In
+ * the meantime, the system running this code will have access to all
+ * possible time scales albeit with somewhat reduced accuracy
+ */
+    tlong =3D -155.471667 ;
+    tlat  =3D 19.826667 ;
+    xpm    =3D 0.05 ;    =20
+    ypm    =3D 0.4 ;    =20
+    ttmtai =3D 32.184 ;=20
+    djmls  =3D 999999.9 ;   =20
+    delat  =3D 37.0 ;    &lt;---   =20
+    delut  =3D 0.338 ;   =20
+    deltdb =3D 0.0 ;    =20
+    biass =3D 0.0 ;    </pre>
+</div>
+</div>
+<h2 local-id=3D"2d01c595e429" id=3D"LeapSeconds-Slalib">Slalib</h2>
+<p local-id=3D"ceab10cb930c">After the leap second is announced, the functi=
+on <strong>slaDat</strong> should be updated to add a check for the new lea=
+p second so that if any systems out there call slaDat they will get the cor=
+rect leap second value. Modify <strong>dat.c</strong> and add the correspon=
+ding line for the new leap second:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">/* - - =
+- - - - - - - - - - - - - - - - - - - */
+/* Add new code here on each occasion that a */
+/* leap second is announced, and also update */
+/* the preamble comments appropriately.      */
+/* - - - - - - - - - - - - - - - - - - - - - */
+
+/* 2017 January 1 */
+   if ( utc &gt;=3D 57754.0 ) return 37.0;
+
+/* 2015 July 1 */
+   if ( utc &gt;=3D 57204.0 ) return 36.0;
+
+/* 2012 June 1 */
+   if ( utc &gt;=3D 56109.0 ) return 35.0;</pre>
+</div>
+</div>
+<h2 local-id=3D"3f700c8ab473" id=3D"LeapSeconds-Flamingos2">Flamingos 2</h2=
+>
+<p local-id=3D"3315ed9f9aef">No changes are required as far as we can tell.=
+</p>
+<p local-id=3D"188bc57bb559">F2 has copies of <em>timelib</em> and <em>slal=
+ib</em> in the <em>/gemini</em> folder on <em>flam2sparc</em>, but these li=
+braries were intended for the original VME software that was later replaced=
+ by the portable channel access server interface (PCASI), and for the OIWFS=
+ software used during the acceptance tests.</p>
+<h2 local-id=3D"b9f617d6d65c" id=3D"LeapSeconds-GPI">GPI</h2>
+<p local-id=3D"42e13fa7e342">The GPI changes are no longer needed, but are =
+documented here for reference.</p>
+<h3 local-id=3D"a23b806f1ce1" id=3D"LeapSeconds-GMP">GMP</h3>
+<p local-id=3D"5b1b99c96a47">The GMP needs to take into account the leap se=
+conds when updating the PCS.<br>
+There is a single configuration file that needs to be updated, in the case =
+of GPI it is located at</p>
+<p local-id=3D"1e6da2bdf5f1">/gemsoft/opt/gpi/gmp-server/conf/services/edu.=
+gemini.aspen.gmp.pcs.model.PcsUpdaterComponent-default.cfg</p>
+<p local-id=3D"6f13ae7f4082">And it contains an entry called:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence"># TAI d=
+ifference
+ taiDiff=3D37</pre>
+</div>
+</div>
+<p local-id=3D"a6bc36dbd80a">After the file is changed it is recommended to=
+ restart the GMP</p>
+<h3 local-id=3D"3df0a05cccc9" id=3D"LeapSeconds-Timelib/Slalib">Timelib / S=
+lalib</h3>
+<p local-id=3D"ab2b681eb6a0"><em>Timelib</em> and <em>slalib</em> should be=
+ compiled in the TLC to update the leap second. Unfortunately, these two li=
+braries are designed to compile with EPICS installed on the same machine, w=
+hich is not the case in the TLC. The Linux rpm cannot be installed in this =
+machine since it's an old RedHat 5.3 machine. The following instructions de=
+scribe the steps that were used in 2016 to recompile timelib and slalib. Al=
+l the instructions in this section assume that the code was checked out and=
+ compiled in the ''$HOME/gemini'' directory.</p>
+<h4 local-id=3D"fed99382be9b" id=3D"LeapSeconds-EPICS">EPICS</h4>
+<ul local-id=3D"98e0d02d0a14">
+<li local-id=3D"00aa9e6b9b06">
+<p local-id=3D"2f4f340bd293">Check out the EPICS code from the repository</=
+p></li>
+</ul>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">% cd $H=
+OME/gemini
+% svn co http://source.gemini.edu/software/epics-base/trunk/ epics</pre>
+</div>
+</div>
+<ul local-id=3D"a5c0f5fe3f5f">
+<li local-id=3D"a96173269887">
+<p local-id=3D"99cec411a5ca">Compile the code</p></li>
+</ul>
+<p local-id=3D"fdb3c3230ed4">This will fail because of unresolved dependenc=
+ies with packages that are not available in the TLC, but it will get far en=
+ough for what we need.</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">% cd ep=
+ics/base-3.14.12
+% make
+...
+*** [src.install] Error 2</pre>
+</div>
+</div>
+<h4 local-id=3D"b50f9c61956a" id=3D"LeapSeconds-Slalib.1">Slalib</h4>
+<p local-id=3D"e206f1443b09">Slalib should be compiled before timelib.</p>
+<ul local-id=3D"7807665741d6">
+<li local-id=3D"038925f6d0d6">
+<p local-id=3D"5100762e2dad">Checkout the code from the repository</p></li>
+</ul>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">% cd $H=
+OME/gemini
+% svn co http://source.gemini.edu/software/epics_module-slalib/trunk slalib=
+</pre>
+</div>
+</div>
+<ul local-id=3D"aacccd2d9923">
+<li local-id=3D"80e98c21455e">
+<p local-id=3D"516b12c9038d">Edit configure/RELEASE to set EPICS_BASE</p></=
+li>
+</ul>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">EPICS_B=
+ASE=3D/home/gpi/gemini/epics/base</pre>
+</div>
+</div>
+<ul local-id=3D"9f6c0d9efaec">
+<li local-id=3D"004ea2148b7a">
+<p local-id=3D"691e01b90027">Make sure the leap second is added in slalibAp=
+p/src/dat.c</p></li>
+</ul>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">/* 2017=
+ January 1 */
+   if ( utc &gt;=3D 57754.0 ) return 37.0;</pre>
+</div>
+</div>
+<ul local-id=3D"b913c4769a5d">
+<li local-id=3D"39648ce62aeb">
+<p local-id=3D"9a44dc6cc9ca">Compile the code</p></li>
+</ul>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">% cd $H=
+OME/gemini/slalib
+% make</pre>
+</div>
+</div>
+<ul local-id=3D"93f7970b6b29">
+<li local-id=3D"d8bee142d931">
+<p local-id=3D"ca8adbd133ab">Copy the library to the directory expected by =
+the TLC</p></li>
+</ul>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">% cd $H=
+OME/gemini/slalib/lib/linux-x86_64
+% cp libsla.a &lt;to be completed by Carlos&gt;</pre>
+</div>
+</div>
+<h4 local-id=3D"80cc4559be92" id=3D"LeapSeconds-Timelib.1">Timelib</h4>
+<p local-id=3D"9ca0718802e3">The leap second changes are located in the IOC=
+ specific code (<a class=3D"external-link" href=3D"http://timeSeq.st" rel=
+=3D"nofollow">timeSeq.st</a>) that's not used in GPI, but the library was c=
+ompiled anyway.</p>
+<ul local-id=3D"d22a4e3307a0">
+<li local-id=3D"2eae77ba8732">
+<p local-id=3D"14e11e4d37f6">Check out the code from the repository</p></li=
+>
+</ul>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">% cd $H=
+OME/gemini
+% svn co http://source.gemini.edu/software/epics_module-timelib/trunk timel=
+ib</pre>
+</div>
+</div>
+<ul local-id=3D"4ddc0fc295be">
+<li local-id=3D"ebb1c89365fd">
+<p local-id=3D"a07dfa33b9a6">Edit configure/RELEASE to set EPICS_BASE</p></=
+li>
+</ul>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">EPICS_B=
+ASE=3D/home/gpi/gemini/epics/base</pre>
+</div>
+</div>
+<ul local-id=3D"2ebbcd735f03">
+<li local-id=3D"b113c52ea54f">
+<p local-id=3D"8d6d99e55aac">Edit configure/RELEASE.gemini to set SLALIB</p=
+></li>
+</ul>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">SLALIB=
+=3D/home/gpi/gemini/slalib</pre>
+</div>
+</div>
+<ul local-id=3D"90e78f8796cc">
+<li local-id=3D"4cdf558d2050">
+<p local-id=3D"25685e294543">Comment out IOC specific code timelibApp/src/t=
+imelib/Makefile</p></li>
+</ul>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">#LIB_SR=
+CS_Linux +=3D timePrint.c
+#LIB_SRCS_solaris +=3D timePrint.c
+#LIB_LIBS +=3D $(EPICS_BASE_IOC_LIBS)
+#LIB_SRCS_DEFAULT +=3D timeSeq.st</pre>
+</div>
+</div>
+<ul local-id=3D"9b1596eb7e5b">
+<li local-id=3D"7cc21cefa7f6">
+<p local-id=3D"c167e2d4752b">Compile the code</p></li>
+</ul>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">% cd $H=
+OME/gemini/timelib/
+% make</pre>
+</div>
+</div>
+<ul local-id=3D"b8a47aa7f251">
+<li local-id=3D"7433f10c4d85">
+<p local-id=3D"5ecb457e1b60">Copy the library to the directory expected by =
+the TLC</p></li>
+</ul>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">% cd $H=
+OME/gemini/timelib/lib/linux-x86_64/
+% cp libtime.a &lt;to be completed by Carlos&gt;</pre>
+</div>
+</div>
+<h3 local-id=3D"b7352a5b33aa" id=3D"LeapSeconds-TLC">TLC</h3>
+<p local-id=3D"5037bd3fb29c">Additionally the TLC is compiled against timel=
+ib to calculate the WCS values. These values go into the FITS headers.</p>
+<p local-id=3D"a7015d09927c">The newly compiled libraries timelib and slali=
+b should be copied to the dir</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">$TLC_RO=
+OT/external/gemini</pre>
+</div>
+</div>
+<p local-id=3D"ef3d9919bf94">Under the directories:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">include=
+/
+ lib/</pre>
+</div>
+</div>
+<p local-id=3D"d1370ee45e37">Only one process <em>gpCmdEvent</em> uses time=
+lib so in principle it is only necessary to compile and restart gpCmdEvent,=
+ as follows</p>
+<p local-id=3D"c232a7e177e8">As user <em>gpi</em></p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence"> cd $TL=
+C_ROOT/src
+ make gpCmdEvent
+ exit</pre>
+</div>
+</div>
+<p local-id=3D"d50b56596bbf">As user <em>software</em>, restart the <em>gmp=
+</em></p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence"> /gemso=
+ft/opt/gpi/gmp-server/bin/gmp-server-ctl.sh stop
+ /gemsoft/opt/gpi/gmp-server/bin/gmp-server-ctl.sh start</pre>
+</div>
+</div>
+<h1 local-id=3D"ac99d1b23521" id=3D"LeapSeconds-Emails">Emails</h1>
+<p local-id=3D"e17a38b4c8ac">This section contains the email exchanges with=
+ Chris Mayer to get advice on how to proceed with the leap second changes f=
+or the 2012 June 30th leap second.</p>
+<ul local-id=3D"437b3e30-0589-4a63-a497-5d67254fb585">
+<li local-id=3D"df6dcb1f-5037-4e14-9512-b61b2bacc53d">
+<p local-id=3D"83ff9680a279">From Pedro Gigoux to Chris Mayer</p></li>
+</ul>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">Hola Ch=
+ris,
+
+As you probably know, the IERS announced a +1 leap second for June 30th.
+The timelib source code has the following comments regarding how to cope wi=
+th this change:
+
+/*
+** ------------
+** LEAP SECONDS
+** ------------
+**
+** Actions when a new leap second is announced:
+**
+**   1) Set djmls to the date of the next leap-second.  This will either
+**      be a July 1 or a January 1.
+**
+**   2) Sanity-check that the datlsd currently in service is 1 second
+**      less than the TAI-UTC which the announcement says will come
+**      into force at the leap second.
+**
+** Actions after a leap second has occurred (say next day):
+**
+**   1) Sanity-check that dutd is +ve and decrement by 1 second.
+**
+**   2) Increment datlsd by 1 second and sanity-check that it is
+**      now equal to the post-leap-second TAI-UTC given in the
+**      leap second announcement.
+**
+**   3) Set djmls to an arbitrary large number (1e6 suggested).
+*/
+
+Could you confirm that this procedure is all we need to do in order to get =
+things right?
+My understanding is that only the TCS needs to be rebooted in order to chan=
+ge the leap second settings.
+Can these changes be made on the fly or we need to compile timelib and rebo=
+ot the TCS every time?
+Is it too critical if we don't make the after-leap-second changes on July 1=
+st?
+
+Thank you,</pre>
+</div>
+</div>
+<ul local-id=3D"765ab908-f93d-4064-8316-39aba7e556ed">
+<li local-id=3D"1cb07321-e0a5-48a7-874d-4a9042b1dfd1">
+<p local-id=3D"701bc9829119">From Chris Mayer to Pedro Gigoux</p></li>
+</ul>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">Hi Pedr=
+o,
+
+  yes, this procedure is still correct and it is not time critical that you=
+ make the after-leap-second changes on
+July 1st. However, I am a bit puzzled by comment 1 for after the leap secon=
+d has occurred where it say sanity check
+that dutd is +ve and decrement by 1s - the instruction to decrement by 1s s=
+eems wrong. The terms dutd and datlsd are
+used in the combination dutd - datlsd. At the leap second both datlsd and d=
+utd increment by 1s so the difference
+stays the same.
+
+  There may be a coordination issue depending on who generally updates the =
+Gemxxxx.current files for the polar
+motion and UT1-UTC (i.e.dutd). After the leap second has occurred the one t=
+hing to avoid is updating UT1-UTC without
+simultaneously updating datlsd and djmls. So, if its an SSA job to update p=
+olar motion and UT1-UTC before observing
+starts then they must also update Gemxxxxx.default with datlsd and djmls at=
+ the start of the shift after the leap
+second.
+
+  Currently it is still necessary to boot reboot the TCS to get the new dat=
+a but then any system that is using
+timeSeq.st should pick up the data from the TCS via channel access. I'll do=
+ a quick check tomorrow to make sure this
+is still working - it is a long time since it has been tested.
+
+  Longer term a couple of other changes can be made: slaDat should be updat=
+ed to add the new leap second so that if
+any systems out there call slaDat they will get the correct leap second val=
+ue and timeSeq.st should be updated so that
+the default value of leap seconds is set to 35.
+
+  All the best
+
+    Chris</pre>
+</div>
+</div>
+<ul local-id=3D"454953ea-f212-45c5-9050-7c1b45686146">
+<li local-id=3D"b46869f8-dc37-478d-9750-d151ecc39c82">
+<p local-id=3D"3e0d82601fe2">From Chris Mayer to Pedro Gigoux</p></li>
+</ul>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">Hi Pedr=
+o,
+
+  I did a check here using the TCS and A&amp;G in simulation. I started the=
+ TCS with its default value
+of djmls (999999.99) and the then checked what timeDump gave on both the TC=
+S and A&amp;G
+
+&gt; tc1&gt;timeDump
+&gt; Dump of contents of time Library private memory
+&gt;
+&gt; Init flag =3D 1
+&gt; Offset bias (days)  =3D 0.000
+&gt; TT - TAI =3D 32.184
+&gt; MJD of next leap sec =3D 999999.900
+&gt; TAI - UTC before that date (secs) =3D 34.000
+&gt; UT1 - UTC before that date (secs) =3D 0.360
+&gt; Current TDB - TT (days) =3D 0.0000000029
+&gt; Current LAST - GMST (rads) =3D 3.5698076356
+
+&gt; ag-&gt;timeDump
+&gt; Dump of contents of time Library private memory
+&gt;
+&gt; Init flag =3D 1
+&gt; Offset bias (days)  =3D 0.000
+&gt; TT - TAI =3D 32.184
+&gt; MJD of next leap sec =3D 999999.900
+&gt; TAI - UTC before that date (secs) =3D 34.000
+&gt; UT1 - UTC before that date (secs) =3D 0.360
+&gt; Current TDB - TT (days) =3D 0.0000000029
+&gt; Current LAST - GMST (rads) =3D 3.5698076356
+
+I then set the djmls to a time a few minutes in the future
+(UTC 10 36 00) and rebooted the TCS.  I now got
+
+&gt; ag-&gt;timeDump
+&gt; Dump of contents of time Library private memory
+&gt;
+&gt; Init flag =3D 1
+&gt; Offset bias (days)  =3D 0.000
+&gt; TT - TAI =3D 32.184
+&gt; MJD of next leap sec =3D 56104.442
+&gt; TAI - UTC before that date (secs) =3D 34.000
+&gt; UT1 - UTC before that date (secs) =3D 0.360
+&gt; Current TDB - TT (days) =3D 0.0000000029
+&gt; Current LAST - GMST (rads) =3D 3.5698076349
+
+ Showing that the A&amp;G had picked up the new value without being reboote=
+d.
+
+ I also ran a log on the TCS to check what it reported for UTC
+as the artificial leap second at 10 36 occurred
+
+&gt;              tc1:UTC 11:36:31.400762081   10:35:57.4
+&gt;              tc1:UTC 11:36:31.900896072   10:35:57.9
+&gt;              tc1:UTC 11:36:32.400773048   10:35:58.4
+&gt;              tc1:UTC 11:36:32.900892972   10:35:58.9
+&gt;              tc1:UTC 11:36:33.400774002   10:35:59.4
+&gt;              tc1:UTC 11:36:33.900907039   10:35:59.9
+&gt;              tc1:UTC 11:36:34.400785923   10:35:59.4
+&gt;              tc1:UTC 11:36:34.900975942   10:35:59.9
+&gt;              tc1:UTC 11:36:35.400784969   10:36:00.4
+&gt;              tc1:UTC 11:36:35.900922060   10:36:00.9
+&gt;              tc1:UTC 11:36:36.400795936   10:36:01.4
+&gt;              tc1:UTC 11:36:36.900921106   10:36:01.9
+&gt;
+
+The epics timestamps (TAI) are smooth and increment normally but you can se=
+e that the UTC as
+calculated by timelib steps back by exactly 1 s at 10 36 so that that secon=
+d is repeated and
+UTC is given correctly
+
+    All the best
+
+      Chris</pre>
+</div>
+</div>
+<h1 local-id=3D"42a140d35cce" id=3D"LeapSeconds-References">References</h1>
+<ul local-id=3D"c79baee679e8">
+<li local-id=3D"782e955b813e">
+<p local-id=3D"9da7c9768396"><a class=3D"external-link" href=3D"https://en.=
+wikipedia.org/wiki/Leap_second" rel=3D"nofollow">Wikipedia leap second page=
+</a></p></li>
+<li local-id=3D"96a28c2607b6">
+<p local-id=3D"65c76c057790"><a class=3D"external-link" href=3D"https://dat=
+acenter.iers.org/data/latestVersion/bulletinC.txt" rel=3D"nofollow">IERS Bu=
+lletin C: leap second announcements</a></p></li>
+</ul>
+    </div>
+</body>
+</html>
+------=_Part_36_1868186856.1772769699703--

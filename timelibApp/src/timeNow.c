@@ -1,18 +1,5 @@
-/***************************************************************/
-/*                                                             */
-/*  Please note that there are two different versions of this  */
-/*  function, for online use (under VxWorks) and offline use   */
-/*  (under Unix) respectively.  The alternative sets of code   */
-/*  are selected through the vxWorks environment variable.     */
-/*                                                             */
-/*  20190701  mdw  The above is no longer true. There is now   */
-/*                 just one version that calls the EPICS OSI   */
-/*                 layer to get the current time of day.       */
-/***************************************************************/
 
-
-
-#include <string.h>
+#include <math.h>
 #include <epicsTime.h>
 #include <epicsGeneralTime.h>
 #include "timesys.h"
@@ -86,12 +73,20 @@ int timeNow ( double *rawt )
 {
    epicsTimeStamp ts;
    epicsTimeGetCurrent(&ts);
-   *rawt = ts.secPastEpoch + ts.nsec/NANOSEC_IN_SEC; /* convert to a double */
-   /* If not using the Bancomm, which provides TAI, assume UTC and add leap seconds */
-   if (absent != 0) {
-	   *rawt += datlsd * SEC_IN_DAY;           // Add leap seconds
-   }
-   *rawt += biass;                                 /* Add testing offset */
-   *rawt += TS_EPICS_TO_UNIX_EPOCH;                /* convert from EPICS to Unix epoch */
+   
+    /* Seconds (UTC) since EPICS epoch (1990-01-01) */
+    double sec = (double)ts.secPastEpoch
+               + (double)ts.nsec / NANOSEC_IN_SEC;
+
+    /* Convert UTC -> TAI using current TAI-UTC (datlsd is in days). */
+    sec += datlsd * SEC_IN_DAY;
+
+    /* Convert EPICS epoch (1990) -> Unix epoch (1970). */
+    sec += (double)TS_EPICS_TO_UNIX_EPOCH;
+
+    /* Apply optional test bias. */
+    sec += biass;
+
+    *rawt = sec;
    return 0;
 }

@@ -243,7 +243,7 @@ ss timeMon
     timeSetDefaults (tlong, tlat, xpm, ypm, ttmtai, djmls, delat,
                      delut, deltdb, biass) ;
 
-    timeClockCheck() ;
+    //timeClockCheck() ;
     timeInit() ;
     timeGetSimFlag(&timeSimFlag);
     loopTime = 1.0 ;
@@ -262,11 +262,14 @@ ss timeMon
   {
    when (pvConnectCount() == pvChannelCount())
    {
+    printf ("timeSeq: %d of %d channels connected\n", pvConnectCount(), pvChannelCount()) ;
    } state checkState
 
    when (pvConnectCount() < pvChannelCount())
    {
-    printf ("timeSeq: Awaiting channel connections\n") ;
+
+    printf ("timeSeq: %d of %d channels connected\n", pvConnectCount(), pvChannelCount()) ;
+    printf ("timeSeq: Awaiting 100%% channel connections...\n") ;
    }  state waitConnect
   }
 

@@ -75,10 +75,10 @@ int timeThenT ( double, timescale, int, int* );
 int timeOffline ( double, double, double, double, double, double, double );
 int timePrint( char* );
 
-void timeClockCheck ( void );
-int timeClockInit (int master, int simulate, int intPerSecond,
-                   int intPerTick, int timeOffset );
-void timeClockReport ( void );
+//void timeClockCheck ( void );
+//int timeClockInit (int master, int simulate, int intPerSecond,
+//                   int intPerTick, int timeOffset );
+//void timeClockReport ( void );
 void timeSetSimFlag ( int simulate );
 void timeGetSimFlag ( int *simulate );
 void timeSetMasterIOC ( int master );

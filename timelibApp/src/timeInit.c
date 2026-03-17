@@ -12,7 +12,6 @@
 #include <slalib.h>
 #include <epicsTime.h>
 #include "timesys.h"
-#include "bc635Aliases.h"
 #include <epicsStdio.h>
 #include <epicsExport.h>
 #include <errlog.h>
@@ -115,104 +114,13 @@ int timeInit ( )
 **  Copyright 1996 RAL.  All rights reserved.
 */
 {
+   int simulate;               /* TRUE if time is to be simulated */ 
 
-   int j;
-   struct timespec tspec;
-   int simulate;               /* TRUE if time is to be simulated */
-   int master;                 /* TRUE if this is the timing master */
-   time_t gpstime;             /* GPS time */
-   struct tm *gtime;           /* GPS time */
-   char rtctime[15];           /* String to send to RTC */
-   epicsTimeStamp now;
-   
-
-/* First check that parameters given with timeClockInit are consistent
- * with the hardware that is present. This repeats the tests of 
- * timeClockCheck so that routine may be able to be scrapped 
- */
-
-   absent = bcTestCard ( );
-
-/* fetch flags from time global memory */
-
+   /* fetch flags from time global memory */
    timeGetSimFlag ( &simulate );
-   timeGetMasterIOC ( &master );
+   //timeGetMasterIOC ( &master );
 
-   if (absent == 127) // Fake Bancomm driver
-   {
-       errlogPrintf("timelib: timeInit detected a fake bancomm driver. Initializing ST and returning\n");
-       goto bail;
-   }
-
-/* First consistency check. Has system been started in non-simulate mode
- * but there is no hardware to support this ?
- */
-
-   if (absent && !simulate)
-   {
-      simulate = TRUE;
-      timeSetSimFlag ( simulate );
-   }
-
-/* Set the CPU RTC. If this results in an error then only report the fact
- * if running in simulate mode. This is equivalent to interpreting 
- * "simulate" to mean "standalone"
- */
-    if (epicsTimeGetCurrent(&now) != 0)
-        return -1;
-
-    if (epicsTimeToTimespec(&tspec, &now) != 0)
-        return -1;
-
-   tspec.tv_sec = tspec.tv_sec - TS_1900_TO_UNIX_EPOCH;
-   j = clock_settime ( CLOCK_REALTIME, &tspec );
-   if (simulate && j) return j;
-
-/* If not simulating then read the Bancomm hardware. If there are no errors
- * then there is no problem but there can be many causes of a non-zero
- * return. Cases identified so afar are
- *
- * bc635 - no input IRIG-B or signal not locked
- *      This is a serious problem. If the simulate flag is set then put
- *      the Bancomm into RTC mode using the best estimate of GPS time
- *      to set the clock. If not simulating then we expect the IRIG-B
- *      signal to soon be available. 
- * bc637 - hardware reboot of crate
- *      Time readout goes to zero for 10 to 15 seconds. Then it locks to
- *      correct time but bits 0 (unsynched) and 2 (freqoffset) stay
- *      set for upto 60 seconds and 10 minutes respectively. 
- * bc637 - software reboot
- *      bit 0 (unsynched) can be set for 10 to 15 seconds
- */
-
-
-/* If the system is to be run in simulation BUT there is Bancomm hardware 
- * available then use its RTC. When running in this mode, calls to
- * bc635_read always appear to come back with bit 0 clear but bits
- * 1 & 2 set. 
- */
-
-   if (!absent && simulate)
-   {
-      gpstime = (time_t)(tspec.tv_sec + datlsd*86400.0 - 19);
-      gtime   = gmtime( &gpstime );
-/* make sure time offset is 0 */
-      bcSendTfp("M+00");
-      sprintf ( rtctime, "%02hd%02hd%02hd%02hd%02hd%02hd%c", (gtime->tm_year)%100, 
-                gtime->tm_mon+1, gtime->tm_mday, gtime->tm_hour, gtime->tm_min,
-                gtime->tm_sec,'\0' );
-/*
-   AJF - If you want to force the date and time to Dec 31st 2005, 23:59:45
-         in the startup of the TCS, this is where you do it!
-      sprintf(rtctime, "%s", "L051231235945");
-*/
-      bcSendTfp ( rtctime );
-      bcSendTfp( "A3" );
-   }
-
-
-bail:
-/* Set the "initialized" flag so that timeNow doesn't call timeInit. */
+   /* Set the "initialized" flag so that timeNow doesn't call timeInit. */
    initd = 1;
 
    // Set the ST offset
@@ -220,5 +128,3 @@ bail:
 
    return 0;
 }
-
-epicsExportAddress(int, absent);

@@ -40,6 +40,11 @@ int timePrint ( char *scale )
    char *month[] = { "Jan", "Feb", "Mar", "Apr", "May", "Jun",
                     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
+   if (scale == NULL || *scale == '\0') {
+      printf("timePrint requires a timescale argument (TAI, UTC, UT1, TT, TDB, GMST, LAST)\n");
+      return -1;
+   }
+
    if ( strcmp( scale, "TAI" ) == 0 ) {
       ts = TAI;
    } else if ( strcmp( scale, "UTC" ) == 0 ) {

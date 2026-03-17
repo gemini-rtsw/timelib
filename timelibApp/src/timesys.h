@@ -31,12 +31,15 @@
 /* TS_1900_TO_UNIX_TIME is 70 * no. of secs in year + 17 * no. of secs in day
 *  (17 being the no. of leap years from 1900 to 1970) It is defined this
 *  way to prevent warnings over integer overflows
+*  Seconds between 1900-01-01 and 1970-01-01 (NTP vs Unix)
 */
 #define TS_1900_TO_UNIX_EPOCH 2208988800UL 
 
 /* TS_EPICS_TO_UNIX_EPOCH is [20 years * 365 days/year + 5 days] * 86400 seconds/per day.
- *  [5 days is the number of leap years between 1 Jan 1970 (Unix Epoch) and 1 Jan 1990 
- *  (EPICS Epoch)
+ * [5 days is the number of leap years between 1 Jan 1970 (Unix Epoch) and 1 Jan 1990 
+ * (EPICS Epoch)
+ * 
+ * Seconds between 1970-01-01 (Unix) and 1990-01-01 (EPICS epoch) 
  */
 
 #define TS_EPICS_TO_UNIX_EPOCH 631152000UL
@@ -81,11 +84,7 @@
    extern int tsim;
 
 /* Flag to show if system running this code is time bus master */
-   extern int masterIOC;
-
-/* Flag to show if hardware is present or not */
-   extern int absent;
-
+   //extern int masterIOC;
 
 /*
 ** ------------
