@@ -26,8 +26,8 @@ Source0: %{name}-%{version}.tar.gz
 ExclusiveArch: %{arch}
 Prefix: %{_prefix}
 ## You may specify dependencies here
-BuildRequires: epics-base-devel re2c gemini-ade slalib-devel sequencer-devel
-Requires: epics-base slalib sequencer
+BuildRequires: epics-base-devel = 7.0.7-0.gitd18bee6.el8 re2c gemini-ade slalib-devel sequencer-devel
+Requires: epics-base = 7.0.7-0.gitd18bee6.el8 slalib sequencer
 ## Switch dependency checking off
 # AutoReqProv: no
 
